@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V&L iPhones - Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .glass-card:hover {
+            border-color: rgba(126, 211, 33, 0.3);
+            box-shadow: 0 12px 40px 0 rgba(126, 211, 33, 0.15);
+            transform: translateY(-4px);
+        }
+        .product-card {
+            transition: all 0.3s ease;
+        }
+        .product-image {
+            transition: transform 0.4s ease;
+        }
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(126, 211, 33, 0.3), transparent);
+        }
+        .badge {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+    </style>
+</head>
+<body class="h-full font-sans" style="background: linear-gradient(to bottom right, #0a3d0a, #022c22, #000000); background-attachment: fixed;">
+    
+    <!-- Navbar Elegante -->
+    <nav class="glass-card sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-xl overflow-hidden shadow-lg">
+                        <img src="logo.jpg" alt="V&L iPhones" class="w-full h-full object-cover">
+                    </div>
+                    <span class="text-xl font-light text-white hidden sm:block">V&L <span class="font-semibold text-[#7ED321]">Imports</span></span>
+                </div>
+
+                <!-- Links Desktop -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#home" class="text-[#7ED321] font-medium text-sm">Home</a>
+                    <a href="#produtos" class="text-gray-300 hover:text-[#7ED321] transition-colors text-sm font-medium">Produtos</a>
+                    <a href="index.html" class="text-gray-300 hover:text-[#7ED321] transition-colors text-sm font-medium">Orçamento</a>
+                    <a href="#contato" class="text-gray-300 hover:text-[#7ED321] transition-colors text-sm font-medium">Contato</a>
+                </div>
+
+                <!-- Botão CTA -->
+                <div class="hidden md:block">
+                    <a href="https://wa.me/5561985330258" target="_blank" class="bg-[#7ED321] text-black px-6 py-2 rounded-lg hover:bg-[#6BC118] transition-all duration-300 text-sm font-semibold shadow-lg hover:shadow-[#7ED321]/30">
+                        📱 WhatsApp
+                    </a>
+                </div>
+
+                <!-- Menu Mobile -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-[#7ED321] transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Menu Mobile Expandido -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pt-4 border-t border-gray-700/50">
+                <div class="flex flex-col gap-4">
+                    <a href="#home" class="text-[#7ED321] font-medium text-sm">Home</a>
+                    <a href="#produtos" class="text-gray-300 hover:text-[#7ED321] transition-colors text-sm font-medium">Produtos</a>
+                    <a href="index.html" class="text-gray-300 hover:text-[#7ED321] transition-colors text-sm font-medium">Orçamento</a>
+                    <a href="#contato" class="text-gray-300 hover:text-[#7ED321] transition-colors text-sm font-medium">Contato</a>
+                    <a href="https://wa.me/5561985330258" target="_blank" class="bg-[#7ED321] text-black px-6 py-2 rounded-lg hover:bg-[#6BC118] transition-all duration-300 text-sm font-semibold shadow-lg text-left">
+                        📱 WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+<!-- Hero Section com Video Background -->
+<section class="relative py-32 px-6 overflow-hidden" id="home">
+    <!-- Video Background -->
+    <video 
+        class="absolute top-0 left-0 w-full h-full object-cover" 
+        autoplay 
+        loop 
+        muted 
+        playsinline>
+        <source src="VID-20251021-WA0014.mp4" type="video/mp4">
+    </video>
+    
+    <!-- Overlay escuro para melhor legibilidade -->
+    <div class="absolute top-0 left-0 w-full h-full bg-black/60"></div>
+    
+    <!-- Conteúdo sobre o vídeo -->
+    <div class="relative z-5 max-w-7xl mx-auto text-center">
+        <div class="inline-block mb-6">
+            <div class="w-80 h-80 mx-auto">
+                <img src="logo.jpg" alt="V&L iPhones" class="w-full h-full object-cover">
+            </div>
+        </div>
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-light tracking-tight text-white mb-4 drop-shadow-2xl">
+            Bem-vindo à <br><span class="font-semibold text-[#7ED321]">V&L IMPORTS</span>
+        </h1>
+        <div class="divider max-w-md mx-auto mb-6"></div>
+        <p class="text-gray-200 text-lg md:text-xl mb-8 max-w-2xl mx-auto drop-shadow-lg">
+            Os melhores iPhones com garantia, suporte técnico especializado e condições especiais de pagamento
+        </p>
+        <div class="flex gap-4 justify-center flex-wrap">
+            <a href="#produtos" class="bg-[#7ED321] text-black px-8 py-4 rounded-xl hover:bg-[#6BC118] transition-all duration-300 font-semibold shadow-2xl hover:shadow-[#7ED321]/50 hover:scale-105">
+                Ver Produtos
+            </a>
+            <a href="index.html" class="bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-xl hover:bg-white/20 transition-all duration-300 font-medium shadow-2xl border border-white/30">
+                Fazer Orçamento
+            </a>
+        </div>
+    </div>
+</section>
+
+
+
+    <!-- Products Section -->
+    <section class="py-16 px-6" id="produtos">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-light text-white mb-3">
+                    Nossos <span class="font-semibold text-[#7ED321]">Produtos</span>
+                </h2>
+                <div class="divider max-w-md mx-auto mb-4"></div>
+                <p class="text-gray-400 text-sm uppercase tracking-wider">iPhones novos e seminovos com garantia</p>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                
+                <!-- iPhone 15 Pro Max -->
+                <div class="glass-card rounded-2xl p-6 product-card">
+                    <div class="relative mb-4">
+                        <span class="absolute top-2 right-2 bg-[#7ED321] text-black text-xs px-3 py-1 rounded-full badge font-semibold z-10">Novo</span>
+                        <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl p-6 mb-4 product-image">
+                            <img src="images/iphone-15-pro-max.png" alt="iPhone 15 Pro Max" class="w-full h-48 object-contain">
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">iPhone 15 Pro Max</h3>
+                    <p class="text-gray-400 text-sm mb-4">256GB • Titânio Natural</p>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="flex text-[#7ED321] text-sm">
+                            ⭐⭐⭐⭐⭐
+                        </div>
+                        <span class="text-gray-500 text-xs">(4.9)</span>
+                    </div>
+                    <div class="border-t border-gray-700/50 pt-4 mb-4">
+                        <div class="text-2xl font-bold text-[#7ED321] mb-1">R$ 9.499</div>
+                        <div class="text-gray-500 text-xs">ou 12x de R$ 791,58</div>
+                    </div>
+                    <button onclick="comprarProduto('iPhone 15 Pro Max', 'R$ 9.499')" class="w-full bg-[#7ED321] text-black py-3 rounded-xl hover:bg-[#6BC118] transition-all duration-300 font-semibold text-sm shadow-lg">
+                        Comprar Agora
+                    </button>
+                </div>
+
+                <!-- iPhone 15 Pro -->
+                <div class="glass-card rounded-2xl p-6 product-card">
+                    <div class="relative mb-4">
+                        <span class="absolute top-2 right-2 bg-[#7ED321] text-black text-xs px-3 py-1 rounded-full badge font-semibold z-10">Novo</span>
+                        <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl p-6 mb-4 product-image">
+                            <img src="iphone azul.jpg" alt="iPhone 15 Pro" class="w-full h-48 object-contain">
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">iPhone 15 Pro</h3>
+                    <p class="text-gray-400 text-sm mb-4">256GB • Titânio Azul</p>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="flex text-[#7ED321] text-sm">
+                            ⭐⭐⭐⭐⭐
+                        </div>
+                        <span class="text-gray-500 text-xs">(4.8)</span>
+                    </div>
+                    <div class="border-t border-gray-700/50 pt-4 mb-4">
+                        <div class="text-2xl font-bold text-[#7ED321] mb-1">R$ 8.499</div>
+                        <div class="text-gray-500 text-xs">ou 12x de R$ 708,25</div>
+                    </div>
+                    <button onclick="comprarProduto('iPhone 15 Pro', 'R$ 8.499')" class="w-full bg-[#7ED321] text-black py-3 rounded-xl hover:bg-[#6BC118] transition-all duration-300 font-semibold text-sm shadow-lg">
+                        Comprar Agora
+                    </button>
+                </div>
+
+                <!-- iPhone 15 -->
+                <div class="glass-card rounded-2xl p-6 product-card">
+                    <div class="relative mb-4">
+                        <span class="absolute top-2 right-2 bg-blue-500 text-white text-xs px-3 py-1 rounded-full badge font-semibold z-10">Destaque</span>
+                        <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl p-6 mb-4 product-image">
+                            <img src="Iphone rosa.jpg" alt="iPhone 15" class="w-full h-48 object-contain">
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">iPhone 15</h3>
+                    <p class="text-gray-400 text-sm mb-4">128GB • Rosa</p>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="flex text-[#7ED321] text-sm">
+                            ⭐⭐⭐⭐⭐
+                        </div>
+                        <span class="text-gray-500 text-xs">(4.7)</span>
+                    </div>
+                    <div class="border-t border-gray-700/50 pt-4 mb-4">
+                        <div class="text-2xl font-bold text-[#7ED321] mb-1">R$ 6.499</div>
+                        <div class="text-gray-500 text-xs">ou 12x de R$ 541,58</div>
+                    </div>
+                    <button onclick="comprarProduto('iPhone 15', 'R$ 6.499')" class="w-full bg-[#7ED321] text-black py-3 rounded-xl hover:bg-[#6BC118] transition-all duration-300 font-semibold text-sm shadow-lg">
+                        Comprar Agora
+                    </button>
+                </div>
+
+                <!-- iPhone 14 Pro -->
+                <div class="glass-card rounded-2xl p-6 product-card">
+                    <div class="relative mb-4">
+                        <span class="absolute top-2 right-2 bg-yellow-500 text-black text-xs px-3 py-1 rounded-full badge font-semibold z-10">Oferta</span>
+                        <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl p-6 mb-4 product-image">
+                            <img src="iphone azul.jpg" alt="iPhone 14 Pro" class="w-full h-48 object-contain">
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">iPhone 14 Pro</h3>
+                    <p class="text-gray-400 text-sm mb-4">256GB • Roxo Profundo</p>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="flex text-[#7ED321] text-sm">
+                            ⭐⭐⭐⭐⭐
+                        </div>
+                        <span class="text-gray-500 text-xs">(4.6)</span>
+                    </div>
+                    <div class="border-t border-gray-700/50 pt-4 mb-4">
+                        <div class="text-2xl font-bold text-[#7ED321] mb-1">R$ 7.199</div>
+                        <div class="text-gray-500 text-xs">ou 12x de R$ 599,92</div>
+                    </div>
+                    <button onclick="comprarProduto('iPhone 14 Pro', 'R$ 7.199')" class="w-full bg-[#7ED321] text-black py-3 rounded-xl hover:bg-[#6BC118] transition-all duration-300 font-semibold text-sm shadow-lg">
+                        Comprar Agora
+                    </button>
+                </div>
+
+                <!-- iPhone 14 -->
+                <div class="glass-card rounded-2xl p-6 product-card">
+                    <div class="relative mb-4">
+                        <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl p-6 mb-4 product-image">
+                            <img src="Iphone rosa.jpg" alt="iPhone 14" class="w-full h-48 object-contain">
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">iPhone 14</h3>
+                    <p class="text-gray-400 text-sm mb-4">128GB • Azul</p>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="flex text-[#7ED321] text-sm">
+                            ⭐⭐⭐⭐⭐
+                        </div>
+                        <span class="text-gray-500 text-xs">(4.5)</span>
+                    </div>
+                    <div class="border-t border-gray-700/50 pt-4 mb-4">
+                        <div class="text-2xl font-bold text-[#7ED321] mb-1">R$ 5.799</div>
+                        <div class="text-gray-500 text-xs">ou 12x de R$ 483,25</div>
+                    </div>
+                    <button onclick="comprarProduto('iPhone 14', 'R$ 5.799')" class="w-full bg-[#7ED321] text-black py-3 rounded-xl hover:bg-[#6BC118] transition-all duration-300 font-semibold text-sm shadow-lg">
+                        Comprar Agora
+                    </button>
+                </div>
+
+                <!-- iPhone 13 Pro -->
+                <div class="glass-card rounded-2xl p-6 product-card">
+                    <div class="relative mb-4">
+                        <span class="absolute top-2 right-2 bg-red-500 text-white text-xs px-3 py-1 rounded-full badge font-semibold z-10">Seminovo</span>
+                        <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl p-6 mb-4 product-image">
+                            <img src="iphone azul.jpg" alt="iPhone 13 Pro" class="w-full h-48 object-contain">
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">iPhone 13 Pro</h3>
+                    <p class="text-gray-400 text-sm mb-4">256GB • Verde Alpino</p>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="flex text-[#7ED321] text-sm">
+                            ⭐⭐⭐⭐⭐
+                        </div>
+                        <span class="text-gray-500 text-xs">(4.7)</span>
+                    </div>
+                    <div class="border-t border-gray-700/50 pt-4 mb-4">
+                        <div class="text-2xl font-bold text-[#7ED321] mb-1">R$ 5.499</div>
+                        <div class="text-gray-500 text-xs">ou 12x de R$ 458,25</div>
+                    </div>
+                    <button onclick="comprarProduto('iPhone 13 Pro', 'R$ 5.499')" class="w-full bg-[#7ED321] text-black py-3 rounded-xl hover:bg-[#6BC118] transition-all duration-300 font-semibold text-sm shadow-lg">
+                        Comprar Agora
+                    </button>
+                </div>
+
+                <!-- iPhone 13 -->
+                <div class="glass-card rounded-2xl p-6 product-card">
+                    <div class="relative mb-4">
+                        <span class="absolute top-2 right-2 bg-red-500 text-white text-xs px-3 py-1 rounded-full badge font-semibold z-10">Seminovo</span>
+                        <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl p-6 mb-4 product-image">
+                            <img src="Iphone rosa.jpg" alt="iPhone 13" class="w-full h-48 object-contain">
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">iPhone 13</h3>
+                    <p class="text-gray-400 text-sm mb-4">128GB • Meia-noite</p>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="flex text-[#7ED321] text-sm">
+                            ⭐⭐⭐⭐⭐
+                        </div>
+                        <span class="text-gray-500 text-xs">(4.6)</span>
+                    </div>
+                    <div class="border-t border-gray-700/50 pt-4 mb-4">
+                        <div class="text-2xl font-bold text-[#7ED321] mb-1">R$ 4.299</div>
+                        <div class="text-gray-500 text-xs">ou 12x de R$ 358,25</div>
+                    </div>
+                    <button onclick="comprarProduto('iPhone 13', 'R$ 4.299')" class="w-full bg-[#7ED321] text-black py-3 rounded-xl hover:bg-[#6BC118] transition-all duration-300 font-semibold text-sm shadow-lg">
+                        Comprar Agora
+                    </button>
+                </div>
+
+                <!-- iPhone 12 -->
+                <div class="glass-card rounded-2xl p-6 product-card">
+                    <div class="relative mb-4">
+                        <span class="absolute top-2 right-2 bg-purple-500 text-white text-xs px-3 py-1 rounded-full badge font-semibold z-10">Promoção</span>
+                        <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl p-6 mb-4 product-image">
+                            <img src="iphone azul.jpg" alt="iPhone 12" class="w-full h-48 object-contain">
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">iPhone 12</h3>
+                    <p class="text-gray-400 text-sm mb-4">64GB • Roxo</p>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="flex text-[#7ED321] text-sm">
+                            ⭐⭐⭐⭐⭐
+                        </div>
+                        <span class="text-gray-500 text-xs">(4.5)</span>
+                    </div>
+                    <div class="border-t border-gray-700/50 pt-4 mb-4">
+                        <div class="text-2xl font-bold text-[#7ED321] mb-1">R$ 3.499</div>
+                        <div class="text-gray-500 text-xs">ou 12x de R$ 291,58</div>
+                    </div>
+                    <button onclick="comprarProduto('iPhone 12', 'R$ 3.499')" class="w-full bg-[#7ED321] text-black py-3 rounded-xl hover:bg-[#6BC118] transition-all duration-300 font-semibold text-sm shadow-lg">
+                        Comprar Agora
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-6" id="contato">
+        <div class="max-w-4xl mx-auto">
+            <div class="glass-card rounded-3xl p-12 text-center">
+                <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-[#7ED321] to-[#6BC118] flex items-center justify-center shadow-lg">
+                    <span class="text-3xl">💬</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-light text-white mb-4">
+                    Ainda tem <span class="font-semibold text-[#7ED321]">dúvidas?</span>
+                </h2>
+                <p class="text-gray-400 mb-8 max-w-2xl mx-auto">
+                    Entre em contato conosco pelo WhatsApp e tire todas as suas dúvidas com nossa equipe especializada
+                </p>
+                <a href="https://wa.me/5561985330258" target="_blank" class="inline-block bg-green-600 text-white px-8 py-4 rounded-xl hover:bg-green-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-green-500/30">
+                    📱 Falar no WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="glass-card mt-20">
+        <div class="max-w-7xl mx-auto px-6 py-8">
+            <div class="text-center">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-xl overflow-hidden shadow-lg">
+                        <img src="logo.jpg" alt="V&L iPhones" class="w-full h-full object-cover">
+                    </div>
+                    <span class="text-xl font-light text-white">V&L <span class="font-semibold text-[#7ED321]">iPhones</span></span>
+                </div>
+                <p class="text-gray-400 text-sm mb-4">Os melhores iPhones com garantia e suporte especializado</p>
+                <div class="divider max-w-md mx-auto mb-4"></div>
+                <p class="text-gray-500 text-xs">© 2025 V&L iPhones. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Mobile Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Fechar menu mobile ao clicar em um link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Função de compra
+        function comprarProduto(produto, preco) {
+            const numeroLoja = '5561985330258';
+            const mensagem = `Olá! Tenho interesse no *${produto}* no valor de *${preco}*. Gostaria de mais informações sobre formas de pagamento e disponibilidade.`;
+            const mensagemEncoded = encodeURIComponent(mensagem);
+            const urlWhatsApp = `https://wa.me/${numeroLoja}?text=${mensagemEncoded}`;
+            window.open(urlWhatsApp, '_blank');
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

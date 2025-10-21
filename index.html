@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Orçamento iPhone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+      :root {
+          --verde-primary: #7ED321;
+          --verde-secondary: #6BC118;
+          --verde-dark: #5AA915;
+      }
+      
+      body {
+          box-sizing: border-box;
+      }
+      .fade-in {
+          animation: fadeIn 0.4s ease-in-out;
+      }
+      @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(8px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+      .glass-card {
+          background: rgba(15, 23, 42, 0.85);
+          backdrop-filter: blur(16px);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      }
+      .glass-card:hover {
+          border-color: rgba(126, 211, 33, 0.3);
+          box-shadow: 0 12px 40px 0 rgba(126, 211, 33, 0.15);
+          transform: translateY(-4px);
+      }
+      .product-card {
+          transition: all 0.3s ease;
+      }
+      .product-image {
+          transition: transform 0.4s ease;
+      }
+      .product-card:hover .product-image {
+          transform: scale(1.05);
+      }
+      .divider {
+          height: 1px;
+          background: linear-gradient(to right, transparent, rgba(126, 211, 33, 0.3), transparent);
+      }
+      .badge {
+          animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.7; }
+      }
+  </style>
+</head>
+<body class="h-full font-sans" style="background: linear-gradient(to bottom right, #064e3b, #022c22, #000000); background-attachment: fixed;">
+    
+    <!-- Navbar Elegante -->
+    <nav class="glass-card sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center shadow-lg">
+                        <span class="text-xl">📱</span>
+                    </div>
+                    <span class="text-xl font-light text-white hidden sm:block">iPhone <span class="font-semibold text-emerald-400">Store</span></span>
+                </div>
+
+                <!-- Links Desktop -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="home.html" class="text-gray-300 hover:text-emerald-400 transition-colors text-sm font-medium">Início</a>
+                    <a href="#modelos" class="text-gray-300 hover:text-emerald-400 transition-colors text-sm font-medium">Modelos</a>
+                    <a href="#troca" class="text-gray-300 hover:text-emerald-400 transition-colors text-sm font-medium">Trade-in</a>
+                    <a href="#contato" class="text-gray-300 hover:text-emerald-400 transition-colors text-sm font-medium">Contato</a>
+                </div>
+
+                <!-- Botão CTA -->
+                <div class="hidden md:block">
+                    <button onclick="scrollToForm()" class="bg-emerald-600 text-white px-6 py-2 rounded-lg hover:bg-emerald-700 transition-all duration-300 text-sm font-medium shadow-lg hover:shadow-emerald-500/30">
+                        Avaliar Agora
+                    </button>
+                </div>
+
+                <!-- Menu Mobile -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-emerald-400 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Menu Mobile Expandido -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pt-4 border-t border-gray-700/50">
+                <div class="flex flex-col gap-4">
+                    <a href="#inicio" class="text-gray-300 hover:text-emerald-400 transition-colors text-sm font-medium">Início</a>
+                    <a href="#modelos" class="text-gray-300 hover:text-emerald-400 transition-colors text-sm font-medium">Modelos</a>
+                    <a href="#troca" class="text-gray-300 hover:text-emerald-400 transition-colors text-sm font-medium">Trade-in</a>
+                    <a href="#contato" class="text-gray-300 hover:text-emerald-400 transition-colors text-sm font-medium">Contato</a>
+                    <button onclick="scrollToForm()" class="bg-emerald-600 text-white px-6 py-2 rounded-lg hover:bg-emerald-700 transition-all duration-300 text-sm font-medium shadow-lg text-left">
+                        Avaliar Agora
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="min-h-full p-6 md:p-8" id="inicio">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header Elegante -->
+            <header class="text-center mb-12">
+                <div class="inline-block mb-4">
+                    <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center shadow-lg">
+                        <span class="text-3xl">📱</span>
+                    </div>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-light tracking-tight text-white mb-3">
+                    Sistema de Orçamento <span class="font-semibold text-emerald-400">iPhone</span>
+                </h1>
+                <div class="divider max-w-md mx-auto mb-4"></div>
+                <p class="text-gray-400 text-sm uppercase tracking-wider">Avaliação Profissional de Dispositivos Apple</p>
+            </header>
+
+            <div class="grid lg:grid-cols-3 gap-8" id="modelos">
+                <!-- Formulário Principal -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- iPhone Desejado -->
+                    <div class="glass-card rounded-2xl p-8 transition-all duration-300">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+                                <span class="text-xl">✨</span>
+                            </div>
+                            <h2 class="text-xl font-light text-white">iPhone Desejado</h2>
+                        </div>
+                        <label for="modelo-desejado" class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Selecione o modelo desejado</label>
+                        <select id="modelo-desejado" class="w-full p-4 bg-slate-900/50 border border-slate-700/50 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-200 text-sm backdrop-blur-sm">
+                            <option value="">Escolha um modelo...</option>
+                            <option value="iphone15pro">iPhone 15 Pro</option>
+                            <option value="iphone15promax">iPhone 15 Pro Max</option>
+                            <option value="iphone15">iPhone 15</option>
+                            <option value="iphone15plus">iPhone 15 Plus</option>
+                            <option value="iphone14pro">iPhone 14 Pro</option>
+                            <option value="iphone14promax">iPhone 14 Pro Max</option>
+                            <option value="iphone14">iPhone 14</option>
+                            <option value="iphone14plus">iPhone 14 Plus</option>
+                            <option value="iphone13pro">iPhone 13 Pro</option>
+                            <option value="iphone13promax">iPhone 13 Pro Max</option>
+                            <option value="iphone13">iPhone 13</option>
+                            <option value="iphone13mini">iPhone 13 Mini</option>
+                            <option value="iphone12pro">iPhone 12 Pro</option>
+                            <option value="iphone12promax">iPhone 12 Pro Max</option>
+                            <option value="iphone12">iPhone 12</option>
+                            <option value="iphone12mini">iPhone 12 Mini</option>
+                        </select>
+                    </div>
+
+                    <!-- Aparelho para Troca -->
+                    <div class="glass-card rounded-2xl p-8 transition-all duration-300" id="troca">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+                                <span class="text-xl">🔄</span>
+                            </div>
+                            <h2 class="text-xl font-light text-white">Aparelho para Troca</h2>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" id="tem-troca" class="mr-3 text-emerald-500 focus:ring-emerald-500 rounded">
+                                <span class="text-gray-300 text-sm">Tenho um iPhone para dar de entrada</span>
+                            </label>
+                        </div>
+
+                        <div id="troca-section" class="hidden space-y-5">
+                            <div>
+                                <label for="modelo-troca" class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Modelo do iPhone para troca</label>
+                                <select id="modelo-troca" class="w-full p-4 bg-slate-900/50 border border-slate-700/50 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-200 text-sm backdrop-blur-sm">
+                                    <option value="">Escolha um modelo...</option>
+                                    <option value="iphone15pro">iPhone 15 Pro</option>
+                                    <option value="iphone15promax">iPhone 15 Pro Max</option>
+                                    <option value="iphone15">iPhone 15</option>
+                                    <option value="iphone15plus">iPhone 15 Plus</option>
+                                    <option value="iphone14pro">iPhone 14 Pro</option>
+                                    <option value="iphone14promax">iPhone 14 Pro Max</option>
+                                    <option value="iphone14">iPhone 14</option>
+                                    <option value="iphone14plus">iPhone 14 Plus</option>
+                                    <option value="iphone13pro">iPhone 13 Pro</option>
+                                    <option value="iphone13promax">iPhone 13 Pro Max</option>
+                                    <option value="iphone13">iPhone 13</option>
+                                    <option value="iphone13mini">iPhone 13 Mini</option>
+                                    <option value="iphone12pro">iPhone 12 Pro</option>
+                                    <option value="iphone12promax">iPhone 12 Pro Max</option>
+                                    <option value="iphone12">iPhone 12</option>
+                                    <option value="iphone12mini">iPhone 12 Mini</option>
+                                    <option value="iphone11pro">iPhone 11 Pro</option>
+                                    <option value="iphone11">iPhone 11</option>
+                                    <option value="iphonexs">iPhone XS</option>
+                                    <option value="iphonex">iPhone X</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="cor-troca" class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Cor do aparelho</label>
+                                <select id="cor-troca" class="w-full p-4 bg-slate-900/50 border border-slate-700/50 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-200 text-sm backdrop-blur-sm" disabled>
+                                    <option value="">Primeiro selecione um modelo</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Condição do aparelho para troca</label>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <label class="flex items-start p-4 bg-slate-900/30 border border-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-800/40 hover:border-emerald-500/30 transition-all duration-300">
+                                        <input type="radio" name="estado-troca" value="excelente" class="mt-1 mr-3 text-emerald-500 focus:ring-emerald-500">
+                                        <div>
+                                            <div class="font-medium text-emerald-400 text-sm">Excelente</div>
+                                            <div class="text-xs text-gray-500">Como novo</div>
+                                        </div>
+                                    </label>
+                                    <label class="flex items-start p-4 bg-slate-900/30 border border-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-800/40 hover:border-emerald-500/30 transition-all duration-300">
+                                        <input type="radio" name="estado-troca" value="bom" class="mt-1 mr-3 text-emerald-500 focus:ring-emerald-500">
+                                        <div>
+                                            <div class="font-medium text-blue-400 text-sm">Bom</div>
+                                            <div class="text-xs text-gray-500">Pequenos riscos</div>
+                                        </div>
+                                    </label>
+                                    <label class="flex items-start p-4 bg-slate-900/30 border border-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-800/40 hover:border-emerald-500/30 transition-all duration-300">
+                                        <input type="radio" name="estado-troca" value="usado" class="mt-1 mr-3 text-emerald-500 focus:ring-emerald-500">
+                                        <div>
+                                            <div class="font-medium text-yellow-400 text-sm">Usado</div>
+                                            <div class="text-xs text-gray-500">Sinais de uso</div>
+                                        </div>
+                                    </label>
+                                    <label class="flex items-start p-4 bg-slate-900/30 border border-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-800/40 hover:border-emerald-500/30 transition-all duration-300">
+                                        <input type="radio" name="estado-troca" value="danificado" class="mt-1 mr-3 text-emerald-500 focus:ring-emerald-500">
+                                        <div>
+                                            <div class="font-medium text-red-400 text-sm">Danificado</div>
+                                            <div class="text-xs text-gray-500">Necessita reparos</div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Componentes substituídos no aparelho de troca</label>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <label class="flex items-center p-3 bg-slate-900/30 border border-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-800/40 hover:border-emerald-500/30 transition-all duration-300">
+                                        <input type="checkbox" name="pecas-troca" value="tela" class="mr-3 text-emerald-500 focus:ring-emerald-500 rounded">
+                                        <span class="text-gray-300 text-sm">Display</span>
+                                    </label>
+                                    <label class="flex items-center p-3 bg-slate-900/30 border border-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-800/40 hover:border-emerald-500/30 transition-all duration-300">
+                                        <input type="checkbox" name="pecas-troca" value="bateria" class="mr-3 text-emerald-500 focus:ring-emerald-500 rounded">
+                                        <span class="text-gray-300 text-sm">Bateria</span>
+                                    </label>
+                                    <label class="flex items-center p-3 bg-slate-900/30 border border-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-800/40 hover:border-emerald-500/30 transition-all duration-300">
+                                        <input type="checkbox" name="pecas-troca" value="camera" class="mr-3 text-emerald-500 focus:ring-emerald-500 rounded">
+                                        <span class="text-gray-300 text-sm">Câmera</span>
+                                    </label>
+                                    <label class="flex items-center p-3 bg-slate-900/30 border border-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-800/40 hover:border-emerald-500/30 transition-all duration-300">
+                                        <input type="checkbox" name="pecas-troca" value="outros" class="mr-3 text-emerald-500 focus:ring-emerald-500 rounded">
+                                        <span class="text-gray-300 text-sm">Outros</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dados do Cliente -->
+                    <div class="glass-card rounded-2xl p-8 transition-all duration-300" id="contato">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+                                <span class="text-xl">👤</span>
+                            </div>
+                            <h2 class="text-xl font-light text-white">Informações do Cliente</h2>
+                        </div>
+                        <p class="text-xs text-gray-500 mb-5 uppercase tracking-wider">Campos opcionais</p>
+                        <div class="grid md:grid-cols-2 gap-5">
+                            <div>
+                                <label for="nome" class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">Nome Completo</label>
+                                <input type="text" id="nome" class="w-full p-4 bg-slate-900/50 border border-slate-700/50 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-200 text-sm placeholder-gray-600" placeholder="Digite o nome">
+                            </div>
+                            <div>
+                                <label for="telefone" class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">Telefone</label>
+                                <input type="tel" id="telefone" class="w-full p-4 bg-slate-900/50 border border-slate-700/50 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-200 text-sm placeholder-gray-600" placeholder="(00) 00000-0000">
+                            </div>
+                        </div>
+                        <div class="mt-5">
+                            <label for="observacoes" class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">Observações Adicionais</label>
+                            <textarea id="observacoes" rows="4" class="w-full p-4 bg-slate-900/50 border border-slate-700/50 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-200 text-sm placeholder-gray-600" placeholder="Informações relevantes sobre o dispositivo..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resumo do Orçamento -->
+                <div class="lg:col-span-1">
+                    <div class="glass-card rounded-2xl p-8 sticky top-24 transition-all duration-300">
+                        <div class="text-center mb-8">
+                            <h2 class="text-2xl font-light text-white mb-2">Resumo da Avaliação</h2>
+                            <div class="divider"></div>
+                        </div>
+                        
+                        <div id="resumo-content" class="space-y-4">
+                            <div class="text-center text-gray-500 py-12">
+                                <div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-slate-800/50 flex items-center justify-center">
+                                    <span class="text-4xl">📱</span>
+                                </div>
+                                <p class="text-sm text-gray-400">Selecione o iPhone desejado<br/>para iniciar a avaliação</p>
+                            </div>
+                        </div>
+
+                        <div id="resumo-detalhado" class="hidden space-y-6">
+                            <div class="space-y-4">
+                                <div class="bg-gradient-to-br from-emerald-500/10 to-green-600/10 rounded-xl p-5 border border-emerald-500/20">
+                                    <div class="text-xs text-gray-400 uppercase tracking-wider mb-2">iPhone Desejado</div>
+                                    <div id="modelo-desejado-nome" class="text-xl font-light text-emerald-400">-</div>
+                                </div>
+
+                                <div id="valor-troca-section" class="hidden bg-gradient-to-br from-blue-500/10 to-cyan-600/10 rounded-xl p-5 border border-blue-500/20">
+                                    <div class="text-xs text-gray-400 uppercase tracking-wider mb-2">Valor do Aparelho de Troca</div>
+                                    <div id="valor-troca" class="text-xl font-light text-blue-400">R$ 0,00</div>
+                                    <div id="modelo-troca-nome" class="text-xs text-gray-500 mt-2">-</div>
+                                </div>
+                            </div>
+
+                            <!-- Botões de Ação -->
+                            <div class="space-y-3 mt-8">
+                                <button id="btn-salvar" class="elegant-button w-full bg-emerald-600 text-white py-4 px-6 rounded-xl hover:bg-emerald-700 transition-all duration-300 font-medium text-sm shadow-lg hover:shadow-emerald-500/30 relative">
+                                    <span class="relative z-10">💾 Salvar Orçamento</span>
+                                </button>
+                                <button id="btn-pdf" class="elegant-button w-full bg-slate-700 text-white py-4 px-6 rounded-xl hover:bg-slate-600 transition-all duration-300 font-medium text-sm shadow-lg relative">
+                                    <span class="relative z-10">📄 Exportar PDF</span>
+                                </button>
+                                <button id="btn-whatsapp" class="elegant-button w-full bg-green-600 text-white py-4 px-6 rounded-xl hover:bg-green-700 transition-all duration-300 font-medium text-sm shadow-lg hover:shadow-green-500/30 relative">
+                                    <span class="relative z-10">📱 Enviar WhatsApp</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Histórico -->
+                        <div id="historico" class="mt-8 pt-6">
+                            <div class="divider mb-6"></div>
+                            <h3 class="text-sm font-medium text-gray-400 uppercase tracking-wider mb-4">Histórico Recente</h3>
+                            <div id="lista-historico" class="space-y-3 max-h-48 overflow-y-auto">
+                                <p class="text-gray-600 text-xs text-center py-4">Nenhum registro disponível</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Feedback -->
+    <div id="modal-feedback" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center z-50">
+        <div class="glass-card rounded-2xl p-8 max-w-md mx-4 shadow-2xl">
+            <div id="modal-content" class="text-center">
+                <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                    <span class="text-4xl">✅</span>
+                </div>
+                <h3 class="text-xl font-light text-white mb-2">Sucesso</h3>
+                <p class="text-gray-400 text-sm mb-6">Orçamento salvo com sucesso</p>
+                <button id="btn-fechar-modal" class="bg-emerald-600 text-white px-8 py-3 rounded-xl hover:bg-emerald-700 transition-all duration-300 text-sm font-medium shadow-lg">
+                    Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modelosData = {
+            'iphone15pro': { nome: 'iPhone 15 Pro', precoBase: 8500, cores: { 'titanio-natural': { nome: 'Titânio Natural', ajuste: 0 }, 'titanio-azul': { nome: 'Titânio Azul', ajuste: 200 }, 'titanio-branco': { nome: 'Titânio Branco', ajuste: 100 }, 'titanio-preto': { nome: 'Titânio Preto', ajuste: 150 } } },
+            'iphone15promax': { nome: 'iPhone 15 Pro Max', precoBase: 9500, cores: { 'titanio-natural': { nome: 'Titânio Natural', ajuste: 0 }, 'titanio-azul': { nome: 'Titânio Azul', ajuste: 200 }, 'titanio-branco': { nome: 'Titânio Branco', ajuste: 100 }, 'titanio-preto': { nome: 'Titânio Preto', ajuste: 150 } } },
+            'iphone15': { nome: 'iPhone 15', precoBase: 6500, cores: { 'rosa': { nome: 'Rosa', ajuste: 100 }, 'amarelo': { nome: 'Amarelo', ajuste: 50 }, 'verde': { nome: 'Verde', ajuste: 50 }, 'azul': { nome: 'Azul', ajuste: 0 }, 'preto': { nome: 'Preto', ajuste: 0 } } },
+            'iphone15plus': { nome: 'iPhone 15 Plus', precoBase: 7200, cores: { 'rosa': { nome: 'Rosa', ajuste: 100 }, 'amarelo': { nome: 'Amarelo', ajuste: 50 }, 'verde': { nome: 'Verde', ajuste: 50 }, 'azul': { nome: 'Azul', ajuste: 0 }, 'preto': { nome: 'Preto', ajuste: 0 } } },
+            'iphone14pro': { nome: 'iPhone 14 Pro', precoBase: 7200, cores: { 'roxo-profundo': { nome: 'Roxo Profundo', ajuste: 200 }, 'dourado': { nome: 'Dourado', ajuste: 150 }, 'prateado': { nome: 'Prateado', ajuste: 100 }, 'grafite': { nome: 'Grafite', ajuste: 0 } } },
+            'iphone14promax': { nome: 'iPhone 14 Pro Max', precoBase: 8200, cores: { 'roxo-profundo': { nome: 'Roxo Profundo', ajuste: 200 }, 'dourado': { nome: 'Dourado', ajuste: 150 }, 'prateado': { nome: 'Prateado', ajuste: 100 }, 'grafite': { nome: 'Grafite', ajuste: 0 } } },
+            'iphone14': { nome: 'iPhone 14', precoBase: 5800, cores: { 'roxo': { nome: 'Roxo', ajuste: 100 }, 'amarelo': { nome: 'Amarelo', ajuste: 50 }, 'azul': { nome: 'Azul', ajuste: 0 }, 'rosa': { nome: 'Rosa', ajuste: 100 }, 'branco': { nome: 'Branco', ajuste: 0 }, 'preto': { nome: 'Preto', ajuste: 0 } } },
+            'iphone14plus': { nome: 'iPhone 14 Plus', precoBase: 6500, cores: { 'roxo': { nome: 'Roxo', ajuste: 100 }, 'amarelo': { nome: 'Amarelo', ajuste: 50 }, 'azul': { nome: 'Azul', ajuste: 0 }, 'rosa': { nome: 'Rosa', ajuste: 100 }, 'branco': { nome: 'Branco', ajuste: 0 }, 'preto': { nome: 'Preto', ajuste: 0 } } },
+            'iphone13pro': { nome: 'iPhone 13 Pro', precoBase: 6200, cores: { 'verde-alpino': { nome: 'Verde Alpino', ajuste: 150 }, 'azul-sierra': { nome: 'Azul Sierra', ajuste: 100 }, 'dourado': { nome: 'Dourado', ajuste: 100 }, 'prateado': { nome: 'Prateado', ajuste: 50 }, 'grafite': { nome: 'Grafite', ajuste: 0 } } },
+            'iphone13promax': { nome: 'iPhone 13 Pro Max', precoBase: 7000, cores: { 'verde-alpino': { nome: 'Verde Alpino', ajuste: 150 }, 'azul-sierra': { nome: 'Azul Sierra', ajuste: 100 }, 'dourado': { nome: 'Dourado', ajuste: 100 }, 'prateado': { nome: 'Prateado', ajuste: 50 }, 'grafite': { nome: 'Grafite', ajuste: 0 } } },
+            'iphone13': { nome: 'iPhone 13', precoBase: 4800, cores: { 'rosa': { nome: 'Rosa', ajuste: 100 }, 'azul': { nome: 'Azul', ajuste: 50 }, 'meia-noite': { nome: 'Meia-noite', ajuste: 0 }, 'luz-das-estrelas': { nome: 'Luz das Estrelas', ajuste: 50 }, 'vermelho': { nome: 'Vermelho', ajuste: 100 } } },
+            'iphone13mini': { nome: 'iPhone 13 Mini', precoBase: 4200, cores: { 'rosa': { nome: 'Rosa', ajuste: 100 }, 'azul': { nome: 'Azul', ajuste: 50 }, 'meia-noite': { nome: 'Meia-noite', ajuste: 0 }, 'luz-das-estrelas': { nome: 'Luz das Estrelas', ajuste: 50 }, 'vermelho': { nome: 'Vermelho', ajuste: 100 } } },
+            'iphone12pro': { nome: 'iPhone 12 Pro', precoBase: 5500, cores: { 'azul-pacifico': { nome: 'Azul Pacífico', ajuste: 150 }, 'dourado': { nome: 'Dourado', ajuste: 100 }, 'grafite': { nome: 'Grafite', ajuste: 0 }, 'prateado': { nome: 'Prateado', ajuste: 50 } } },
+            'iphone12promax': { nome: 'iPhone 12 Pro Max', precoBase: 6200, cores: { 'azul-pacifico': { nome: 'Azul Pacífico', ajuste: 150 }, 'dourado': { nome: 'Dourado', ajuste: 100 }, 'grafite': { nome: 'Grafite', ajuste: 0 }, 'prateado': { nome: 'Prateado', ajuste: 50 } } },
+            'iphone12': { nome: 'iPhone 12', precoBase: 4200, cores: { 'roxo': { nome: 'Roxo', ajuste: 100 }, 'azul': { nome: 'Azul', ajuste: 50 }, 'verde': { nome: 'Verde', ajuste: 50 }, 'vermelho': { nome: 'Vermelho', ajuste: 100 }, 'branco': { nome: 'Branco', ajuste: 0 }, 'preto': { nome: 'Preto', ajuste: 0 } } },
+            'iphone12mini': { nome: 'iPhone 12 Mini', precoBase: 3800, cores: { 'roxo': { nome: 'Roxo', ajuste: 100 }, 'azul': { nome: 'Azul', ajuste: 50 }, 'verde': { nome: 'Verde', ajuste: 50 }, 'vermelho': { nome: 'Vermelho', ajuste: 100 }, 'branco': { nome: 'Branco', ajuste: 0 }, 'preto': { nome: 'Preto', ajuste: 0 } } },
+            'iphone11pro': { nome: 'iPhone 11 Pro', precoBase: 4000, cores: { 'verde-meia-noite': { nome: 'Verde Meia-noite', ajuste: 100 }, 'cinza-espacial': { nome: 'Cinza Espacial', ajuste: 0 }, 'prateado': { nome: 'Prateado', ajuste: 50 }, 'dourado': { nome: 'Dourado', ajuste: 100 } } },
+            'iphone11': { nome: 'iPhone 11', precoBase: 3200, cores: { 'roxo': { nome: 'Roxo', ajuste: 50 }, 'amarelo': { nome: 'Amarelo', ajuste: 50 }, 'verde': { nome: 'Verde', ajuste: 50 }, 'preto': { nome: 'Preto', ajuste: 0 }, 'branco': { nome: 'Branco', ajuste: 0 }, 'vermelho': { nome: 'Vermelho', ajuste: 100 } } },
+            'iphonexs': { nome: 'iPhone XS', precoBase: 2800, cores: { 'dourado': { nome: 'Dourado', ajuste: 100 }, 'cinza-espacial': { nome: 'Cinza Espacial', ajuste: 0 }, 'prateado': { nome: 'Prateado', ajuste: 50 } } },
+            'iphonex': { nome: 'iPhone X', precoBase: 2400, cores: { 'cinza-espacial': { nome: 'Cinza Espacial', ajuste: 0 }, 'prateado': { nome: 'Prateado', ajuste: 50 } } }
+        };
+
+        const ajustesEstado = {
+            'excelente': 1.0,
+            'bom': 0.85,
+            'usado': 0.65,
+            'danificado': 0.40
+        };
+
+        const ajustesPecas = {
+            'tela': 0.85,
+            'bateria': 0.92,
+            'camera': 0.88,
+            'outros': 0.90
+        };
+
+        const modeloDesejadoSelect = document.getElementById('modelo-desejado');
+        const temTrocaCheckbox = document.getElementById('tem-troca');
+        const trocaSection = document.getElementById('troca-section');
+        const modeloTrocaSelect = document.getElementById('modelo-troca');
+        const corTrocaSelect = document.getElementById('cor-troca');
+        const resumoContent = document.getElementById('resumo-content');
+        const resumoDetalhado = document.getElementById('resumo-detalhado');
+        const modeloDesejadoNome = document.getElementById('modelo-desejado-nome');
+        const valorTrocaSection = document.getElementById('valor-troca-section');
+        const valorTroca = document.getElementById('valor-troca');
+        const modeloTrocaNome = document.getElementById('modelo-troca-nome');
+
+        function formatarMoeda(valor) {
+            return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(valor);
+        }
+
+        temTrocaCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                trocaSection.classList.remove('hidden');
+            } else {
+                trocaSection.classList.add('hidden');
+                modeloTrocaSelect.value = '';
+                corTrocaSelect.value = '';
+                corTrocaSelect.disabled = true;
+            }
+            calcularOrcamento();
+        });
+
+        function atualizarCoresTroca() {
+            const modeloSelecionado = modeloTrocaSelect.value;
+            corTrocaSelect.innerHTML = '<option value="">Selecione uma cor...</option>';
+            
+            if (modeloSelecionado && modelosData[modeloSelecionado]) {
+                corTrocaSelect.disabled = false;
+                const cores = modelosData[modeloSelecionado].cores;
+                
+                Object.keys(cores).forEach(corKey => {
+                    const option = document.createElement('option');
+                    option.value = corKey;
+                    option.textContent = cores[corKey].nome;
+                    corTrocaSelect.appendChild(option);
+                });
+            } else {
+                corTrocaSelect.disabled = true;
+            }
+            
+            calcularOrcamento();
+        }
+
+        function calcularValorTroca() {
+            const modeloSelecionado = modeloTrocaSelect.value;
+            if (!modeloSelecionado || !modelosData[modeloSelecionado]) return 0;
+
+            const modelo = modelosData[modeloSelecionado];
+            let precoBase = modelo.precoBase;
+            
+            const corSelecionada = corTrocaSelect.value;
+            if (corSelecionada && modelo.cores[corSelecionada]) {
+                precoBase += modelo.cores[corSelecionada].ajuste;
+            }
+
+            const estadoSelecionado = document.querySelector('input[name="estado-troca"]:checked');
+            if (estadoSelecionado) {
+                precoBase *= ajustesEstado[estadoSelecionado.value];
+            }
+
+            const pecasSelecionadas = document.querySelectorAll('input[name="pecas-troca"]:checked');
+            pecasSelecionadas.forEach(peca => {
+                precoBase *= ajustesPecas[peca.value];
+            });
+
+            return precoBase;
+        }
+
+        function calcularOrcamento() {
+            const modeloSelecionado = modeloDesejadoSelect.value;
+            
+            if (!modeloSelecionado || !modelosData[modeloSelecionado]) {
+                resumoContent.classList.remove('hidden');
+                resumoDetalhado.classList.add('hidden');
+                return;
+            }
+
+            resumoContent.classList.add('hidden');
+            resumoDetalhado.classList.remove('hidden');
+
+            const modelo = modelosData[modeloSelecionado];
+            modeloDesejadoNome.textContent = modelo.nome;
+
+            if (temTrocaCheckbox.checked && modeloTrocaSelect.value) {
+                valorTrocaSection.classList.remove('hidden');
+                const valorTrocaCalculado = calcularValorTroca();
+                valorTroca.textContent = formatarMoeda(valorTrocaCalculado);
+                modeloTrocaNome.textContent = modelosData[modeloTrocaSelect.value].nome;
+            } else {
+                valorTrocaSection.classList.add('hidden');
+            }
+        }
+
+        function obterDadosOrcamento() {
+            const modeloSelecionado = modeloDesejadoSelect.value;
+            if (!modeloSelecionado) return null;
+
+            const modelo = modelosData[modeloSelecionado];
+            const nome = document.getElementById('nome').value;
+            const telefone = document.getElementById('telefone').value;
+            const observacoes = document.getElementById('observacoes').value;
+
+            let dadosTroca = null;
+            if (temTrocaCheckbox.checked && modeloTrocaSelect.value) {
+                const modeloTrocaSel = modelosData[modeloTrocaSelect.value];
+                dadosTroca = {
+                    modelo: modeloTrocaSel.nome,
+                    valor: valorTroca.textContent
+                };
+            }
+
+            return {
+                modeloDesejado: modelo.nome,
+                troca: dadosTroca,
+                cliente: { nome, telefone, observacoes },
+                data: new Date().toLocaleString('pt-BR')
+            };
+        }
+
+        function salvarOrcamento() {
+            const dados = obterDadosOrcamento();
+            if (!dados) {
+                mostrarModal('❌', 'Erro', 'Selecione o iPhone desejado', 'bg-red-600');
+                return;
+            }
+
+            let historico = JSON.parse(localStorage.getItem('historico-orcamentos') || '[]');
+            historico.unshift(dados);
+            historico = historico.slice(0, 10);
+            
+            localStorage.setItem('historico-orcamentos', JSON.stringify(historico));
+            atualizarHistorico();
+            
+            mostrarModal('✅', 'Sucesso', 'Orçamento salvo com sucesso', 'bg-emerald-600');
+        }
+
+        function gerarPDF() {
+            const dados = obterDadosOrcamento();
+            if (!dados) {
+                mostrarModal('❌', 'Erro', 'Selecione o iPhone desejado', 'bg-red-600');
+                return;
+            }
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            doc.setFontSize(20);
+            doc.text('Orçamento iPhone', 20, 30);
+
+            doc.setFontSize(12);
+            let y = 50;
+            
+            doc.text(`iPhone Desejado: ${dados.modeloDesejado}`, 20, y);
+            y += 10;
+
+            if (dados.troca) {
+                y += 5;
+                doc.text(`Aparelho para Troca: ${dados.troca.modelo}`, 20, y);
+                y += 10;
+                doc.text(`Valor da Troca: ${dados.troca.valor}`, 20, y);
+                y += 10;
+            }
+
+            if (dados.cliente.nome || dados.cliente.telefone) {
+                y += 10;
+                doc.setFontSize(14);
+                doc.text('Dados do Cliente:', 20, y);
+                y += 10;
+                doc.setFontSize(12);
+                
+                if (dados.cliente.nome) {
+                    doc.text(`Nome: ${dados.cliente.nome}`, 20, y);
+                    y += 10;
+                }
+                if (dados.cliente.telefone) {
+                    doc.text(`Telefone: ${dados.cliente.telefone}`, 20, y);
+                    y += 10;
+                }
+                if (dados.cliente.observacoes) {
+                    doc.text(`Observações: ${dados.cliente.observacoes}`, 20, y);
+                }
+            }
+
+            doc.setFontSize(10);
+            doc.text(`Gerado em: ${dados.data}`, 20, 280);
+
+            doc.save(`orcamento-iphone-${Date.now()}.pdf`);
+            mostrarModal('📄', 'Sucesso', 'PDF gerado com sucesso', 'bg-emerald-600');
+        }
+
+        function enviarWhatsApp() {
+            const dados = obterDadosOrcamento();
+            if (!dados) {
+                mostrarModal('❌', 'Erro', 'Selecione o iPhone desejado', 'bg-red-600');
+                return;
+            }
+
+            const numeroLoja = '5561985330258';
+
+            let mensagem = `*Orçamento iPhone*\n\n`;
+            mensagem += `📱 *iPhone Desejado:* ${dados.modeloDesejado}\n\n`;
+            
+            if (dados.troca) {
+                mensagem += `🔄 *Aparelho para Troca:* ${dados.troca.modelo}\n`;
+                mensagem += `💰 *Valor da Troca:* ${dados.troca.valor}\n\n`;
+            }
+
+            if (dados.cliente.nome || dados.cliente.telefone) {
+                mensagem += `👤 *Dados do Cliente:*\n`;
+                if (dados.cliente.nome) mensagem += `Nome: ${dados.cliente.nome}\n`;
+                if (dados.cliente.telefone) mensagem += `Telefone: ${dados.cliente.telefone}\n`;
+                if (dados.cliente.observacoes) mensagem += `Obs: ${dados.cliente.observacoes}\n`;
+                mensagem += `\n`;
+            }
+
+            mensagem += `📅 *Gerado em:* ${dados.data}`;
+
+            const mensagemEncoded = encodeURIComponent(mensagem);
+            const urlWhatsApp = `https://wa.me/${numeroLoja}?text=${mensagemEncoded}`;
+            
+            window.open(urlWhatsApp, '_blank');
+            
+            mostrarModal('✅', 'Sucesso', 'Abrindo WhatsApp...', 'bg-green-600');
+        }
+
+        function mostrarModal(icone, titulo, mensagem, corBotao) {
+            const modal = document.getElementById('modal-feedback');
+            const modalContent = document.getElementById('modal-content');
+            
+            modalContent.innerHTML = `
+                <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                    <span class="text-4xl">${icone}</span>
+                </div>
+                <h3 class="text-xl font-light text-white mb-2">${titulo}</h3>
+                <p class="text-gray-400 text-sm mb-6">${mensagem}</p>
+                <button id="btn-fechar-modal" class="${corBotao} text-white px-8 py-3 rounded-xl hover:opacity-90 transition-all duration-300 text-sm font-medium shadow-lg">
+                    Fechar
+                </button>
+            `;
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            document.getElementById('btn-fechar-modal').addEventListener('click', () => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            });
+        }
+
+        function atualizarHistorico() {
+            const historico = JSON.parse(localStorage.getItem('historico-orcamentos') || '[]');
+            const listaHistorico = document.getElementById('lista-historico');
+            
+            if (historico.length === 0) {
+                listaHistorico.innerHTML = '<p class="text-gray-600 text-xs text-center py-4">Nenhum registro disponível</p>';
+                return;
+            }
+
+            listaHistorico.innerHTML = historico.slice(0, 5).map(item => `
+                <div class="bg-slate-900/30 border border-slate-700/50 p-4 rounded-xl text-sm hover:border-emerald-500/30 transition-colors">
+                    <div class="font-medium text-gray-200 mb-1">${item.modeloDesejado}</div>
+                    ${item.troca ? `<div class="text-blue-400 text-xs mb-1">Troca: ${item.troca.modelo}</div>` : ''}
+                    <div class="text-xs text-gray-500">${item.data}</div>
+                </div>
+            `).join('');
+        }
+
+        // Menu Mobile Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Scroll suave para o formulário
+        function scrollToForm() {
+            const formSection = document.getElementById('modelo-desejado');
+            if (formSection) {
+                formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Fechar menu mobile ao clicar em um link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        modeloDesejadoSelect.addEventListener('change', calcularOrcamento);
+        modeloTrocaSelect.addEventListener('change', atualizarCoresTroca);
+        corTrocaSelect.addEventListener('change', calcularOrcamento);
+        
+        document.querySelectorAll('input[name="estado-troca"]').forEach(radio => {
+            radio.addEventListener('change', calcularOrcamento);
+        });
+        
+        document.querySelectorAll('input[name="pecas-troca"]').forEach(checkbox => {
+            checkbox.addEventListener('change', calcularOrcamento);
+        });
+
+        document.getElementById('btn-salvar').addEventListener('click', salvarOrcamento);
+        document.getElementById('btn-pdf').addEventListener('click', gerarPDF);
+        document.getElementById('btn-whatsapp').addEventListener('click', enviarWhatsApp);
+
+        document.getElementById('telefone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 11) {
+                value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+            } else if (value.length >= 7) {
+                value = value.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+            } else if (value.length >= 3) {
+                value = value.replace(/(\d{2})(\d{0,5})/, '($1) $2');
+            }
+            e.target.value = value;
+        });
+
+        atualizarHistorico();
+    </script>
+</body>
+</html>
