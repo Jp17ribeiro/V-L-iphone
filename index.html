@@ -3,90 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Orçamento iPhone</title>
+    <title>V&L Imports - Sistema de Orçamento</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
-      :root {
-          --verde-primary: #7ED321;
-          --verde-secondary: #6BC118;
-          --verde-dark: #5AA915;
-      }
-      
-      body {
-          box-sizing: border-box;
-      }
-      .fade-in {
-          animation: fadeIn 0.4s ease-in-out;
-      }
-      @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(8px); }
-          to { opacity: 1; transform: translateY(0); }
-      }
-      .glass-card {
-          background: rgba(15, 23, 42, 0.85);
-          backdrop-filter: blur(16px);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-      }
-      .glass-card:hover {
-          border-color: rgba(126, 211, 33, 0.3);
-          box-shadow: 0 12px 40px 0 rgba(126, 211, 33, 0.15);
-          transform: translateY(-4px);
-      }
-      .product-card {
-          transition: all 0.3s ease;
-      }
-      .product-image {
-          transition: transform 0.4s ease;
-      }
-      .product-card:hover .product-image {
-          transform: scale(1.05);
-      }
-      .divider {
-          height: 1px;
-          background: linear-gradient(to right, transparent, rgba(126, 211, 33, 0.3), transparent);
-      }
-      .badge {
-          animation: pulse 2s infinite;
-      }
-      @keyframes pulse {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.7; }
-      }
-  </style>
+        body {
+            box-sizing: border-box;
+        }
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(126, 211, 33, 0.3);
+            box-shadow: 0 12px 40px 0 rgba(126, 211, 33, 0.15);
+            transform: translateY(-4px);
+        }
+        .product-card {
+            transition: all 0.3s ease;
+        }
+        .product-image {
+            transition: transform 0.4s ease;
+        }
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(126, 211, 33, 0.3), transparent);
+        }
+        .badge {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .elegant-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .elegant-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        .elegant-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        /* Navbar transparente */
+        nav.glass-card {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(126, 211, 33, 0.2);
+        }
+    </style>
 </head>
-<body class="h-full font-sans" style="background: linear-gradient(to bottom right, #064e3b, #022c22, #000000); background-attachment: fixed;">
-    
+<body class="h-full font-sans" style="background: linear-gradient(to bottom right, #0a3d0a, #022c22, #000000); background-attachment: fixed;">
+
     <!-- Navbar Elegante -->
     <nav class="glass-card sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <!-- Logo -->
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center shadow-lg">
-                        <span class="text-xl">📱</span>
+                    <div class="w-12 h-12 rounded-xl overflow-hidden shadow-lg">
+                        <img src="img/Branco e Linhas em Carvão Casamento Logotipo(1).png" alt="V&L Imports" class="w-full h-full object-cover">
                     </div>
-                    <span class="text-xl font-light text-white hidden sm:block">iPhone <span class="font-semibold text-emerald-400">Store</span></span>
+                    <span class="text-xl font-light text-white hidden sm:block">V&L <span class="font-semibold text-[#7ED321]">Imports</span></span>
                 </div>
 
                 <!-- Links Desktop -->
                 <div class="hidden md:flex items-center gap-8">
-                    <a href="home.html" class="text-gray-300 hover:text-emerald-400 transition-colors text-sm font-medium">Início</a>
-                    <a href="#modelos" class="text-gray-300 hover:text-emerald-400 transition-colors text-sm font-medium">Modelos</a>
-                    <a href="#troca" class="text-gray-300 hover:text-emerald-400 transition-colors text-sm font-medium">Trade-in</a>
-                    <a href="#contato" class="text-gray-300 hover:text-emerald-400 transition-colors text-sm font-medium">Contato</a>
+                    <a href="home.html" class="text-gray-300 hover:text-[#7ED321] transition-colors text-sm font-medium">Home</a>
+                    <a href="home.html#produtos" class="text-gray-300 hover:text-[#7ED321] transition-colors text-sm font-medium">Produtos</a>
+                    <a href="#modelos" class="text-[#7ED321] font-medium text-sm">Orçamento</a>
+                    <a href="home.html#contato" class="text-gray-300 hover:text-[#7ED321] transition-colors text-sm font-medium">Contato</a>
                 </div>
 
                 <!-- Botão CTA -->
                 <div class="hidden md:block">
-                    <button onclick="scrollToForm()" class="bg-emerald-600 text-white px-6 py-2 rounded-lg hover:bg-emerald-700 transition-all duration-300 text-sm font-medium shadow-lg hover:shadow-emerald-500/30">
-                        Avaliar Agora
-                    </button>
+                    <a href="https://wa.me/5561985330258" target="_blank" class="bg-[#7ED321] text-black px-6 py-2 rounded-lg hover:bg-[#6BC118] transition-all duration-300 text-sm font-semibold shadow-lg hover:shadow-[#7ED321]/30">
+                        📱 WhatsApp
+                    </a>
                 </div>
 
                 <!-- Menu Mobile -->
-                <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-emerald-400 transition-colors">
+                <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-[#7ED321] transition-colors">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
@@ -96,13 +120,13 @@
             <!-- Menu Mobile Expandido -->
             <div id="mobile-menu" class="hidden md:hidden mt-4 pt-4 border-t border-gray-700/50">
                 <div class="flex flex-col gap-4">
-                    <a href="#inicio" class="text-gray-300 hover:text-emerald-400 transition-colors text-sm font-medium">Início</a>
-                    <a href="#modelos" class="text-gray-300 hover:text-emerald-400 transition-colors text-sm font-medium">Modelos</a>
-                    <a href="#troca" class="text-gray-300 hover:text-emerald-400 transition-colors text-sm font-medium">Trade-in</a>
-                    <a href="#contato" class="text-gray-300 hover:text-emerald-400 transition-colors text-sm font-medium">Contato</a>
-                    <button onclick="scrollToForm()" class="bg-emerald-600 text-white px-6 py-2 rounded-lg hover:bg-emerald-700 transition-all duration-300 text-sm font-medium shadow-lg text-left">
-                        Avaliar Agora
-                    </button>
+                    <a href="home.html" class="text-gray-300 hover:text-[#7ED321] transition-colors text-sm font-medium">Home</a>
+                    <a href="home.html#produtos" class="text-gray-300 hover:text-[#7ED321] transition-colors text-sm font-medium">Produtos</a>
+                    <a href="#modelos" class="text-[#7ED321] font-medium text-sm">Orçamento</a>
+                    <a href="home.html#contato" class="text-gray-300 hover:text-[#7ED321] transition-colors text-sm font-medium">Contato</a>
+                    <a href="https://wa.me/5561985330258" target="_blank" class="bg-[#7ED321] text-black px-6 py-2 rounded-lg hover:bg-[#6BC118] transition-all duration-300 text-sm font-semibold shadow-lg text-left">
+                        📱 WhatsApp
+                    </a>
                 </div>
             </div>
         </div>
@@ -113,12 +137,12 @@
             <!-- Header Elegante -->
             <header class="text-center mb-12">
                 <div class="inline-block mb-4">
-                    <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-emerald-500 to-green-600 flex items-center justify-center shadow-lg">
-                        <span class="text-3xl">📱</span>
+                    <div class="w-20 h-20 mx-auto mb-4 rounded-2xl overflow-hidden shadow-lg">
+                        <img src="img/Branco e Linhas em Carvão Casamento Logotipo(1).png" alt="V&L Imports" class="w-full h-full object-cover">
                     </div>
                 </div>
                 <h1 class="text-4xl md:text-5xl font-light tracking-tight text-white mb-3">
-                    Sistema de Orçamento <span class="font-semibold text-emerald-400">iPhone</span>
+                    Sistema de Orçamento <span class="font-semibold text-[#7ED321]">V&L Imports</span>
                 </h1>
                 <div class="divider max-w-md mx-auto mb-4"></div>
                 <p class="text-gray-400 text-sm uppercase tracking-wider">Avaliação Profissional de Dispositivos Apple</p>
@@ -130,13 +154,13 @@
                     <!-- iPhone Desejado -->
                     <div class="glass-card rounded-2xl p-8 transition-all duration-300">
                         <div class="flex items-center gap-3 mb-6">
-                            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+                            <div class="w-10 h-10 rounded-lg bg-[#7ED321]/10 flex items-center justify-center">
                                 <span class="text-xl">✨</span>
                             </div>
                             <h2 class="text-xl font-light text-white">iPhone Desejado</h2>
                         </div>
                         <label for="modelo-desejado" class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Selecione o modelo desejado</label>
-                        <select id="modelo-desejado" class="w-full p-4 bg-slate-900/50 border border-slate-700/50 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-200 text-sm backdrop-blur-sm">
+                        <select id="modelo-desejado" class="w-full p-4 bg-slate-900/50 border border-slate-700/50 rounded-xl focus:ring-2 focus:ring-[#7ED321] focus:border-transparent text-gray-200 text-sm backdrop-blur-sm">
                             <option value="">Escolha um modelo...</option>
                             <option value="iphone15pro">iPhone 15 Pro</option>
                             <option value="iphone15promax">iPhone 15 Pro Max</option>
@@ -160,15 +184,15 @@
                     <!-- Aparelho para Troca -->
                     <div class="glass-card rounded-2xl p-8 transition-all duration-300" id="troca">
                         <div class="flex items-center gap-3 mb-6">
-                            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+                            <div class="w-10 h-10 rounded-lg bg-[#7ED321]/10 flex items-center justify-center">
                                 <span class="text-xl">🔄</span>
                             </div>
                             <h2 class="text-xl font-light text-white">Aparelho para Troca</h2>
                         </div>
-                        
+
                         <div class="mb-6">
                             <label class="flex items-center cursor-pointer">
-                                <input type="checkbox" id="tem-troca" class="mr-3 text-emerald-500 focus:ring-emerald-500 rounded">
+                                <input type="checkbox" id="tem-troca" class="mr-3 text-[#7ED321] focus:ring-[#7ED321] rounded">
                                 <span class="text-gray-300 text-sm">Tenho um iPhone para dar de entrada</span>
                             </label>
                         </div>
@@ -176,7 +200,7 @@
                         <div id="troca-section" class="hidden space-y-5">
                             <div>
                                 <label for="modelo-troca" class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Modelo do iPhone para troca</label>
-                                <select id="modelo-troca" class="w-full p-4 bg-slate-900/50 border border-slate-700/50 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-200 text-sm backdrop-blur-sm">
+                                <select id="modelo-troca" class="w-full p-4 bg-slate-900/50 border border-slate-700/50 rounded-xl focus:ring-2 focus:ring-[#7ED321] focus:border-transparent text-gray-200 text-sm backdrop-blur-sm">
                                     <option value="">Escolha um modelo...</option>
                                     <option value="iphone15pro">iPhone 15 Pro</option>
                                     <option value="iphone15promax">iPhone 15 Pro Max</option>
@@ -203,7 +227,7 @@
 
                             <div>
                                 <label for="cor-troca" class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Cor do aparelho</label>
-                                <select id="cor-troca" class="w-full p-4 bg-slate-900/50 border border-slate-700/50 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-200 text-sm backdrop-blur-sm" disabled>
+                                <select id="cor-troca" class="w-full p-4 bg-slate-900/50 border border-slate-700/50 rounded-xl focus:ring-2 focus:ring-[#7ED321] focus:border-transparent text-gray-200 text-sm backdrop-blur-sm" disabled>
                                     <option value="">Primeiro selecione um modelo</option>
                                 </select>
                             </div>
@@ -211,29 +235,29 @@
                             <div>
                                 <label class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Condição do aparelho para troca</label>
                                 <div class="grid grid-cols-2 gap-3">
-                                    <label class="flex items-start p-4 bg-slate-900/30 border border-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-800/40 hover:border-emerald-500/30 transition-all duration-300">
-                                        <input type="radio" name="estado-troca" value="excelente" class="mt-1 mr-3 text-emerald-500 focus:ring-emerald-500">
+                                    <label class="flex items-start p-4 bg-slate-900/30 border border-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-800/40 hover:border-[#7ED321]/30 transition-all duration-300">
+                                        <input type="radio" name="estado-troca" value="excelente" class="mt-1 mr-3 text-[#7ED321] focus:ring-[#7ED321]">
                                         <div>
-                                            <div class="font-medium text-emerald-400 text-sm">Excelente</div>
+                                            <div class="font-medium text-[#7ED321] text-sm">Excelente</div>
                                             <div class="text-xs text-gray-500">Como novo</div>
                                         </div>
                                     </label>
-                                    <label class="flex items-start p-4 bg-slate-900/30 border border-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-800/40 hover:border-emerald-500/30 transition-all duration-300">
-                                        <input type="radio" name="estado-troca" value="bom" class="mt-1 mr-3 text-emerald-500 focus:ring-emerald-500">
+                                    <label class="flex items-start p-4 bg-slate-900/30 border border-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-800/40 hover:border-[#7ED321]/30 transition-all duration-300">
+                                        <input type="radio" name="estado-troca" value="bom" class="mt-1 mr-3 text-[#7ED321] focus:ring-[#7ED321]">
                                         <div>
                                             <div class="font-medium text-blue-400 text-sm">Bom</div>
                                             <div class="text-xs text-gray-500">Pequenos riscos</div>
                                         </div>
                                     </label>
-                                    <label class="flex items-start p-4 bg-slate-900/30 border border-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-800/40 hover:border-emerald-500/30 transition-all duration-300">
-                                        <input type="radio" name="estado-troca" value="usado" class="mt-1 mr-3 text-emerald-500 focus:ring-emerald-500">
+                                    <label class="flex items-start p-4 bg-slate-900/30 border border-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-800/40 hover:border-[#7ED321]/30 transition-all duration-300">
+                                        <input type="radio" name="estado-troca" value="usado" class="mt-1 mr-3 text-[#7ED321] focus:ring-[#7ED321]">
                                         <div>
                                             <div class="font-medium text-yellow-400 text-sm">Usado</div>
                                             <div class="text-xs text-gray-500">Sinais de uso</div>
                                         </div>
                                     </label>
-                                    <label class="flex items-start p-4 bg-slate-900/30 border border-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-800/40 hover:border-emerald-500/30 transition-all duration-300">
-                                        <input type="radio" name="estado-troca" value="danificado" class="mt-1 mr-3 text-emerald-500 focus:ring-emerald-500">
+                                    <label class="flex items-start p-4 bg-slate-900/30 border border-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-800/40 hover:border-[#7ED321]/30 transition-all duration-300">
+                                        <input type="radio" name="estado-troca" value="danificado" class="mt-1 mr-3 text-[#7ED321] focus:ring-[#7ED321]">
                                         <div>
                                             <div class="font-medium text-red-400 text-sm">Danificado</div>
                                             <div class="text-xs text-gray-500">Necessita reparos</div>
@@ -245,20 +269,20 @@
                             <div>
                                 <label class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Componentes substituídos no aparelho de troca</label>
                                 <div class="grid grid-cols-2 gap-3">
-                                    <label class="flex items-center p-3 bg-slate-900/30 border border-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-800/40 hover:border-emerald-500/30 transition-all duration-300">
-                                        <input type="checkbox" name="pecas-troca" value="tela" class="mr-3 text-emerald-500 focus:ring-emerald-500 rounded">
+                                    <label class="flex items-center p-3 bg-slate-900/30 border border-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-800/40 hover:border-[#7ED321]/30 transition-all duration-300">
+                                        <input type="checkbox" name="pecas-troca" value="tela" class="mr-3 text-[#7ED321] focus:ring-[#7ED321] rounded">
                                         <span class="text-gray-300 text-sm">Display</span>
                                     </label>
-                                    <label class="flex items-center p-3 bg-slate-900/30 border border-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-800/40 hover:border-emerald-500/30 transition-all duration-300">
-                                        <input type="checkbox" name="pecas-troca" value="bateria" class="mr-3 text-emerald-500 focus:ring-emerald-500 rounded">
+                                    <label class="flex items-center p-3 bg-slate-900/30 border border-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-800/40 hover:border-[#7ED321]/30 transition-all duration-300">
+                                        <input type="checkbox" name="pecas-troca" value="bateria" class="mr-3 text-[#7ED321] focus:ring-[#7ED321] rounded">
                                         <span class="text-gray-300 text-sm">Bateria</span>
                                     </label>
-                                    <label class="flex items-center p-3 bg-slate-900/30 border border-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-800/40 hover:border-emerald-500/30 transition-all duration-300">
-                                        <input type="checkbox" name="pecas-troca" value="camera" class="mr-3 text-emerald-500 focus:ring-emerald-500 rounded">
+                                    <label class="flex items-center p-3 bg-slate-900/30 border border-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-800/40 hover:border-[#7ED321]/30 transition-all duration-300">
+                                        <input type="checkbox" name="pecas-troca" value="camera" class="mr-3 text-[#7ED321] focus:ring-[#7ED321] rounded">
                                         <span class="text-gray-300 text-sm">Câmera</span>
                                     </label>
-                                    <label class="flex items-center p-3 bg-slate-900/30 border border-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-800/40 hover:border-emerald-500/30 transition-all duration-300">
-                                        <input type="checkbox" name="pecas-troca" value="outros" class="mr-3 text-emerald-500 focus:ring-emerald-500 rounded">
+                                    <label class="flex items-center p-3 bg-slate-900/30 border border-slate-700/50 rounded-xl cursor-pointer hover:bg-slate-800/40 hover:border-[#7ED321]/30 transition-all duration-300">
+                                        <input type="checkbox" name="pecas-troca" value="outros" class="mr-3 text-[#7ED321] focus:ring-[#7ED321] rounded">
                                         <span class="text-gray-300 text-sm">Outros</span>
                                     </label>
                                 </div>
@@ -269,7 +293,7 @@
                     <!-- Dados do Cliente -->
                     <div class="glass-card rounded-2xl p-8 transition-all duration-300" id="contato">
                         <div class="flex items-center gap-3 mb-6">
-                            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+                            <div class="w-10 h-10 rounded-lg bg-[#7ED321]/10 flex items-center justify-center">
                                 <span class="text-xl">👤</span>
                             </div>
                             <h2 class="text-xl font-light text-white">Informações do Cliente</h2>
@@ -278,16 +302,16 @@
                         <div class="grid md:grid-cols-2 gap-5">
                             <div>
                                 <label for="nome" class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">Nome Completo</label>
-                                <input type="text" id="nome" class="w-full p-4 bg-slate-900/50 border border-slate-700/50 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-200 text-sm placeholder-gray-600" placeholder="Digite o nome">
+                                <input type="text" id="nome" class="w-full p-4 bg-slate-900/50 border border-slate-700/50 rounded-xl focus:ring-2 focus:ring-[#7ED321] focus:border-transparent text-gray-200 text-sm placeholder-gray-600" placeholder="Digite o nome">
                             </div>
                             <div>
                                 <label for="telefone" class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">Telefone</label>
-                                <input type="tel" id="telefone" class="w-full p-4 bg-slate-900/50 border border-slate-700/50 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-200 text-sm placeholder-gray-600" placeholder="(00) 00000-0000">
+                                <input type="tel" id="telefone" class="w-full p-4 bg-slate-900/50 border border-slate-700/50 rounded-xl focus:ring-2 focus:ring-[#7ED321] focus:border-transparent text-gray-200 text-sm placeholder-gray-600" placeholder="(00) 00000-0000">
                             </div>
                         </div>
                         <div class="mt-5">
                             <label for="observacoes" class="block text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">Observações Adicionais</label>
-                            <textarea id="observacoes" rows="4" class="w-full p-4 bg-slate-900/50 border border-slate-700/50 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-gray-200 text-sm placeholder-gray-600" placeholder="Informações relevantes sobre o dispositivo..."></textarea>
+                            <textarea id="observacoes" rows="4" class="w-full p-4 bg-slate-900/50 border border-slate-700/50 rounded-xl focus:ring-2 focus:ring-[#7ED321] focus:border-transparent text-gray-200 text-sm placeholder-gray-600" placeholder="Informações relevantes sobre o dispositivo..."></textarea>
                         </div>
                     </div>
                 </div>
@@ -299,7 +323,7 @@
                             <h2 class="text-2xl font-light text-white mb-2">Resumo da Avaliação</h2>
                             <div class="divider"></div>
                         </div>
-                        
+
                         <div id="resumo-content" class="space-y-4">
                             <div class="text-center text-gray-500 py-12">
                                 <div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-slate-800/50 flex items-center justify-center">
@@ -311,9 +335,9 @@
 
                         <div id="resumo-detalhado" class="hidden space-y-6">
                             <div class="space-y-4">
-                                <div class="bg-gradient-to-br from-emerald-500/10 to-green-600/10 rounded-xl p-5 border border-emerald-500/20">
+                                <div class="bg-gradient-to-br from-[#7ED321]/10 to-[#6BC118]/10 rounded-xl p-5 border border-[#7ED321]/20">
                                     <div class="text-xs text-gray-400 uppercase tracking-wider mb-2">iPhone Desejado</div>
-                                    <div id="modelo-desejado-nome" class="text-xl font-light text-emerald-400">-</div>
+                                    <div id="modelo-desejado-nome" class="text-xl font-light text-[#7ED321]">-</div>
                                 </div>
 
                                 <div id="valor-troca-section" class="hidden bg-gradient-to-br from-blue-500/10 to-cyan-600/10 rounded-xl p-5 border border-blue-500/20">
@@ -325,13 +349,13 @@
 
                             <!-- Botões de Ação -->
                             <div class="space-y-3 mt-8">
-                                <button id="btn-salvar" class="elegant-button w-full bg-emerald-600 text-white py-4 px-6 rounded-xl hover:bg-emerald-700 transition-all duration-300 font-medium text-sm shadow-lg hover:shadow-emerald-500/30 relative">
+                                <button id="btn-salvar" class="elegant-button w-full bg-[#7ED321] text-black py-4 px-6 rounded-xl hover:bg-[#6BC118] transition-all duration-300 font-semibold text-sm shadow-lg hover:shadow-[#7ED321]/30 relative">
                                     <span class="relative z-10">💾 Salvar Orçamento</span>
                                 </button>
                                 <button id="btn-pdf" class="elegant-button w-full bg-slate-700 text-white py-4 px-6 rounded-xl hover:bg-slate-600 transition-all duration-300 font-medium text-sm shadow-lg relative">
                                     <span class="relative z-10">📄 Exportar PDF</span>
                                 </button>
-                                <button id="btn-whatsapp" class="elegant-button w-full bg-green-600 text-white py-4 px-6 rounded-xl hover:bg-green-700 transition-all duration-300 font-medium text-sm shadow-lg hover:shadow-green-500/30 relative">
+                                <button id="btn-whatsapp" class="elegant-button w-full bg-green-600 text-white py-4 px-6 rounded-xl hover:bg-green-700 transition-all duration-300 font-semibold text-sm shadow-lg hover:shadow-green-500/30 relative">
                                     <span class="relative z-10">📱 Enviar WhatsApp</span>
                                 </button>
                             </div>
@@ -355,12 +379,12 @@
     <div id="modal-feedback" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center z-50">
         <div class="glass-card rounded-2xl p-8 max-w-md mx-4 shadow-2xl">
             <div id="modal-content" class="text-center">
-                <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-[#7ED321]/20 flex items-center justify-center">
                     <span class="text-4xl">✅</span>
                 </div>
                 <h3 class="text-xl font-light text-white mb-2">Sucesso</h3>
                 <p class="text-gray-400 text-sm mb-6">Orçamento salvo com sucesso</p>
-                <button id="btn-fechar-modal" class="bg-emerald-600 text-white px-8 py-3 rounded-xl hover:bg-emerald-700 transition-all duration-300 text-sm font-medium shadow-lg">
+                <button id="btn-fechar-modal" class="bg-[#7ED321] text-black px-8 py-3 rounded-xl hover:bg-[#6BC118] transition-all duration-300 text-sm font-semibold shadow-lg">
                     Fechar
                 </button>
             </div>
@@ -436,11 +460,11 @@
         function atualizarCoresTroca() {
             const modeloSelecionado = modeloTrocaSelect.value;
             corTrocaSelect.innerHTML = '<option value="">Selecione uma cor...</option>';
-            
+
             if (modeloSelecionado && modelosData[modeloSelecionado]) {
                 corTrocaSelect.disabled = false;
                 const cores = modelosData[modeloSelecionado].cores;
-                
+
                 Object.keys(cores).forEach(corKey => {
                     const option = document.createElement('option');
                     option.value = corKey;
@@ -450,7 +474,7 @@
             } else {
                 corTrocaSelect.disabled = true;
             }
-            
+
             calcularOrcamento();
         }
 
@@ -460,7 +484,7 @@
 
             const modelo = modelosData[modeloSelecionado];
             let precoBase = modelo.precoBase;
-            
+
             const corSelecionada = corTrocaSelect.value;
             if (corSelecionada && modelo.cores[corSelecionada]) {
                 precoBase += modelo.cores[corSelecionada].ajuste;
@@ -481,7 +505,7 @@
 
         function calcularOrcamento() {
             const modeloSelecionado = modeloDesejadoSelect.value;
-            
+
             if (!modeloSelecionado || !modelosData[modeloSelecionado]) {
                 resumoContent.classList.remove('hidden');
                 resumoDetalhado.classList.add('hidden');
@@ -540,11 +564,11 @@
             let historico = JSON.parse(localStorage.getItem('historico-orcamentos') || '[]');
             historico.unshift(dados);
             historico = historico.slice(0, 10);
-            
+
             localStorage.setItem('historico-orcamentos', JSON.stringify(historico));
             atualizarHistorico();
-            
-            mostrarModal('✅', 'Sucesso', 'Orçamento salvo com sucesso', 'bg-emerald-600');
+
+            mostrarModal('✅', 'Sucesso', 'Orçamento salvo com sucesso', 'bg-[#7ED321]');
         }
 
         function gerarPDF() {
@@ -558,11 +582,11 @@
             const doc = new jsPDF();
 
             doc.setFontSize(20);
-            doc.text('Orçamento iPhone', 20, 30);
+            doc.text('Orçamento V&L Imports', 20, 30);
 
             doc.setFontSize(12);
             let y = 50;
-            
+
             doc.text(`iPhone Desejado: ${dados.modeloDesejado}`, 20, y);
             y += 10;
 
@@ -580,7 +604,7 @@
                 doc.text('Dados do Cliente:', 20, y);
                 y += 10;
                 doc.setFontSize(12);
-                
+
                 if (dados.cliente.nome) {
                     doc.text(`Nome: ${dados.cliente.nome}`, 20, y);
                     y += 10;
@@ -597,63 +621,64 @@
             doc.setFontSize(10);
             doc.text(`Gerado em: ${dados.data}`, 20, 280);
 
-            doc.save(`orcamento-iphone-${Date.now()}.pdf`);
-            mostrarModal('📄', 'Sucesso', 'PDF gerado com sucesso', 'bg-emerald-600');
+            doc.save(`orcamento-vlimports-${Date.now()}.pdf`);
+            mostrarModal('📄', 'Sucesso', 'PDF gerado com sucesso', 'bg-[#7ED321]');
         }
 
-        function enviarWhatsApp() {
-            const dados = obterDadosOrcamento();
-            if (!dados) {
-                mostrarModal('❌', 'Erro', 'Selecione o iPhone desejado', 'bg-red-600');
-                return;
-            }
-
-            const numeroLoja = '5561985330258';
-
-            let mensagem = `*Orçamento iPhone*\n\n`;
-            mensagem += `📱 *iPhone Desejado:* ${dados.modeloDesejado}\n\n`;
-            
-            if (dados.troca) {
-                mensagem += `🔄 *Aparelho para Troca:* ${dados.troca.modelo}\n`;
-                mensagem += `💰 *Valor da Troca:* ${dados.troca.valor}\n\n`;
-            }
-
-            if (dados.cliente.nome || dados.cliente.telefone) {
-                mensagem += `👤 *Dados do Cliente:*\n`;
-                if (dados.cliente.nome) mensagem += `Nome: ${dados.cliente.nome}\n`;
-                if (dados.cliente.telefone) mensagem += `Telefone: ${dados.cliente.telefone}\n`;
-                if (dados.cliente.observacoes) mensagem += `Obs: ${dados.cliente.observacoes}\n`;
-                mensagem += `\n`;
-            }
-
-            mensagem += `📅 *Gerado em:* ${dados.data}`;
-
-            const mensagemEncoded = encodeURIComponent(mensagem);
-            const urlWhatsApp = `https://wa.me/${numeroLoja}?text=${mensagemEncoded}`;
-            
-            window.open(urlWhatsApp, '_blank');
-            
-            mostrarModal('✅', 'Sucesso', 'Abrindo WhatsApp...', 'bg-green-600');
+                function enviarWhatsApp() {
+        const dados = obterDadosOrcamento();
+        if (!dados) {
+            mostrarModal('❌', 'Erro', 'Selecione o iPhone desejado', 'bg-red-600');
+            return;
         }
+
+        const numeroLoja = '556198451844';
+
+        // Limpa e simplifica os valores
+        const modeloLimpo = dados.modeloDesejado.replace(/[^\w\s]/g, ' ');
+
+        let mensagem = `Orcamento V&L Imports\n\n`;
+        mensagem += `iPhone Desejado: ${modeloLimpo}\n\n`;
+
+        if (dados.troca) {
+            const modeloTrocaLimpo = dados.troca.modelo.replace(/[^\w\s]/g, ' ');
+            const valorTrocaLimpo = dados.troca.valor.replace(/[^\d,]/g, ''); // Remove R$ e espaços
+
+            mensagem += `Aparelho para Troca: ${modeloTrocaLimpo}\n`;
+            mensagem += `Valor da Troca: R$ ${valorTrocaLimpo}\n\n`;
+        }
+
+        if (dados.cliente.nome || dados.cliente.telefone) {
+            mensagem += `Dados do Cliente:\n`;
+            if (dados.cliente.nome) mensagem += `Nome: ${dados.cliente.nome}\n`;
+            if (dados.cliente.telefone) mensagem += `Telefone: ${dados.cliente.telefone}\n`;
+        }
+
+        const urlWhatsApp = `https://wa.me/${numeroLoja}?text=${encodeURIComponent(mensagem)}`;
+        window.open(urlWhatsApp, '_blank');
+
+        mostrarModal('✅', 'Sucesso', 'Abrindo WhatsApp...', 'bg-green-600');
+    }
+
 
         function mostrarModal(icone, titulo, mensagem, corBotao) {
             const modal = document.getElementById('modal-feedback');
             const modalContent = document.getElementById('modal-content');
-            
+
             modalContent.innerHTML = `
-                <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-[#7ED321]/20 flex items-center justify-center">
                     <span class="text-4xl">${icone}</span>
                 </div>
                 <h3 class="text-xl font-light text-white mb-2">${titulo}</h3>
                 <p class="text-gray-400 text-sm mb-6">${mensagem}</p>
-                <button id="btn-fechar-modal" class="${corBotao} text-white px-8 py-3 rounded-xl hover:opacity-90 transition-all duration-300 text-sm font-medium shadow-lg">
+                <button id="btn-fechar-modal" class="${corBotao} text-white px-8 py-3 rounded-xl hover:opacity-90 transition-all duration-300 text-sm font-semibold shadow-lg">
                     Fechar
                 </button>
             `;
-            
+
             modal.classList.remove('hidden');
             modal.classList.add('flex');
-            
+
             document.getElementById('btn-fechar-modal').addEventListener('click', () => {
                 modal.classList.add('hidden');
                 modal.classList.remove('flex');
@@ -663,14 +688,14 @@
         function atualizarHistorico() {
             const historico = JSON.parse(localStorage.getItem('historico-orcamentos') || '[]');
             const listaHistorico = document.getElementById('lista-historico');
-            
+
             if (historico.length === 0) {
                 listaHistorico.innerHTML = '<p class="text-gray-600 text-xs text-center py-4">Nenhum registro disponível</p>';
                 return;
             }
 
             listaHistorico.innerHTML = historico.slice(0, 5).map(item => `
-                <div class="bg-slate-900/30 border border-slate-700/50 p-4 rounded-xl text-sm hover:border-emerald-500/30 transition-colors">
+                <div class="bg-slate-900/30 border border-slate-700/50 p-4 rounded-xl text-sm hover:border-[#7ED321]/30 transition-colors">
                     <div class="font-medium text-gray-200 mb-1">${item.modeloDesejado}</div>
                     ${item.troca ? `<div class="text-blue-400 text-xs mb-1">Troca: ${item.troca.modelo}</div>` : ''}
                     <div class="text-xs text-gray-500">${item.data}</div>
@@ -704,11 +729,11 @@
         modeloDesejadoSelect.addEventListener('change', calcularOrcamento);
         modeloTrocaSelect.addEventListener('change', atualizarCoresTroca);
         corTrocaSelect.addEventListener('change', calcularOrcamento);
-        
+
         document.querySelectorAll('input[name="estado-troca"]').forEach(radio => {
             radio.addEventListener('change', calcularOrcamento);
         });
-        
+
         document.querySelectorAll('input[name="pecas-troca"]').forEach(checkbox => {
             checkbox.addEventListener('change', calcularOrcamento);
         });
