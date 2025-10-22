@@ -6,51 +6,61 @@
     <title>V&L iPhones - Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            box-sizing: border-box;
-        }
-        .fade-in {
-            animation: fadeIn 0.4s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .glass-card {
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        }
-        .glass-card:hover {
-            border-color: rgba(126, 211, 33, 0.3);
-            box-shadow: 0 12px 40px 0 rgba(126, 211, 33, 0.15);
-            transform: translateY(-4px);
-        }
-        .product-card {
-            transition: all 0.3s ease;
-        }
-        .product-image {
-            transition: transform 0.4s ease;
-        }
-        .product-card:hover .product-image {
-            transform: scale(1.05);
-        }
-        .divider {
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(126, 211, 33, 0.3), transparent);
-        }
-        .badge {
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-    </style>
+    body {
+        box-sizing: border-box;
+    }
+    .fade-in {
+        animation: fadeIn 0.4s ease-in-out;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .glass-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+    .glass-card:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(126, 211, 33, 0.3);
+        box-shadow: 0 12px 40px 0 rgba(126, 211, 33, 0.15);
+        transform: translateY(-4px);
+    }
+    .product-card {
+        transition: all 0.3s ease;
+    }
+    .product-image {
+        transition: transform 0.4s ease;
+    }
+    .product-card:hover .product-image {
+        transform: scale(1.05);
+    }
+    .divider {
+        height: 1px;
+        background: linear-gradient(to right, transparent, rgba(126, 211, 33, 0.3), transparent);
+    }
+    .badge {
+        animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.7; }
+    }
+    /* Navbar com efeito vidro */
+    nav.glass-card {
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(126, 211, 33, 0.2);
+    }
+</style>
+
 </head>
 <body class="h-full font-sans" style="background: linear-gradient(to bottom right, #0a3d0a, #022c22, #000000); background-attachment: fixed;">
-    
+
     <!-- Navbar Elegante -->
     <nav class="glass-card sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 py-4">
@@ -58,7 +68,7 @@
                 <!-- Logo -->
                 <div class="flex items-center gap-3">
                     <div class="w-12 h-12 rounded-xl overflow-hidden shadow-lg">
-                        <img src="logo.jpg" alt="V&L iPhones" class="w-full h-full object-cover">
+                        <img src="img/Branco e Linhas em Carvão Casamento Logotipo(1).png" alt="V&L iPhones" class="w-full h-full object-cover">
                     </div>
                     <span class="text-xl font-light text-white hidden sm:block">V&L <span class="font-semibold text-[#7ED321]">Imports</span></span>
                 </div>
@@ -72,11 +82,7 @@
                 </div>
 
                 <!-- Botão CTA -->
-                <div class="hidden md:block">
-                    <a href="https://wa.me/5561985330258" target="_blank" class="bg-[#7ED321] text-black px-6 py-2 rounded-lg hover:bg-[#6BC118] transition-all duration-300 text-sm font-semibold shadow-lg hover:shadow-[#7ED321]/30">
-                        📱 WhatsApp
-                    </a>
-                </div>
+
 
                 <!-- Menu Mobile -->
                 <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-[#7ED321] transition-colors">
@@ -104,23 +110,23 @@
 <!-- Hero Section com Video Background -->
 <section class="relative py-32 px-6 overflow-hidden" id="home">
     <!-- Video Background -->
-    <video 
-        class="absolute top-0 left-0 w-full h-full object-cover" 
-        autoplay 
-        loop 
-        muted 
+    <video
+        class="absolute top-0 left-0 w-full h-full object-cover"
+        autoplay
+        loop
+        muted
         playsinline>
-        <source src="VID-20251021-WA0014.mp4" type="video/mp4">
+        <source src="img/WhatsApp Video 2025-10-21 at 09.56.12.mp4" type="video/mp4">
     </video>
-    
+
     <!-- Overlay escuro para melhor legibilidade -->
     <div class="absolute top-0 left-0 w-full h-full bg-black/60"></div>
-    
+
     <!-- Conteúdo sobre o vídeo -->
     <div class="relative z-5 max-w-7xl mx-auto text-center">
         <div class="inline-block mb-6">
             <div class="w-80 h-80 mx-auto">
-                <img src="logo.jpg" alt="V&L iPhones" class="w-full h-full object-cover">
+                <img src="img/Branco e Linhas em Carvão Casamento Logotipo(1).png" alt="V&L iPhones" class="w-full h-full object-cover">
             </div>
         </div>
         <h1 class="text-5xl md:text-6xl lg:text-7xl font-light tracking-tight text-white mb-4 drop-shadow-2xl">
@@ -141,6 +147,161 @@
     </div>
 </section>
 
+<!-- About Section - Estilo Moderno -->
+<section class="py-20 px-6" id="sobre">
+    <div class="max-w-7xl mx-auto">
+
+        <!-- Video Section com CTA -->
+        <div class="glass-card rounded-3xl p-8 mb-16">
+            <div class="grid lg:grid-cols-2 gap-8 items-center">
+                <!-- Video -->
+                <div class="order-2 lg:order-1">
+                    <div class="rounded-2xl overflow-hidden shadow-2xl">
+                        <video
+                            class="w-full h-auto"
+                            controls
+                            poster="img/Branco e Linhas em Carvão Casamento Logotipo(1).png">
+                            <source src="img/WhatsApp Video 2025-10-21 at 09.56.12.mp4" type="video/mp4">
+                            Seu navegador não suporta a tag de vídeo.
+                        </video>
+                    </div>
+                </div>
+
+                <!-- Texto ao lado -->
+                <div class="order-1 lg:order-2 text-center lg:text-left">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+                        TECNOLOGIA E INOVAÇÃO AO SEU ALCANCE
+                    </h2>
+                    <p class="text-gray-300 text-lg mb-6">
+                        Celulares novos com confiança, qualidade e preço justo.
+                    </p>
+                    <a href="#produtos" class="inline-block bg-gradient-to-r from-[#7ED321] to-[#6BC118] text-black px-8 py-3 rounded-xl hover:from-[#6BC118] hover:to-[#5AA915] transition-all duration-300 font-semibold shadow-lg">
+                        QUERO CONHECER ESSE PRODUTO →
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conteúdo Principal -->
+        <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+
+            <!-- Texto sobre a loja -->
+            <div>
+                <h3 class="text-2xl md:text-3xl font-bold text-white mb-6 leading-tight">
+                    A V&L IMPORTS NASCEU COM UM PROPÓSITO SIMPLES E PODEROSO: TORNAR O SONHO DO iPHONE ACESSÍVEL PARA TODOS.
+                </h3>
+
+                <div class="space-y-4 text-gray-300">
+                    <p>
+                        Na V&L Imports, entendemos que ter um iPhone é muito mais do que ter apenas um celular; é estudar inovação, design e status na palma da mão. Por isso, criamos uma experiência de compra segura, transparente e acessível.
+                    </p>
+                    <p>
+                        Todos os nossos aparelhos passam por rigoroso processo de inspeção antes de chegar até você.
+                    </p>
+                    <p>
+                        Aqui, você não lida com apenas um iPhone. Você lida tranquilidade, qualidade e a certeza de estar fazendo a escolha certa.
+                    </p>
+                    <p class="font-semibold text-[#7ED321]">
+                        ✓ Quer descobrir seu próximo iPhone com segurança e economia?
+                    </p>
+                    <p>
+                        Clique no botão abaixo e fale com a V&L Imports agora no WhatsApp.
+                    </p>
+                </div>
+
+                <a href="https://wa.me/5561985330258" target="_blank" class="inline-block mt-6 bg-gradient-to-r from-[#7ED321] to-[#6BC118] text-black px-8 py-3 rounded-xl hover:from-[#6BC118] hover:to-[#5AA915] transition-all duration-300 font-semibold shadow-lg">
+                    QUERO FALAR NO WHATSAPP →
+                </a>
+            </div>
+
+            <!-- Imagem do vendedor/iPhone -->
+            <div class="relative">
+                <div class="glass-card rounded-3xl p-8 relative overflow-hidden">
+                    <!-- Efeito de luz de fundo -->
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-[#7ED321] opacity-20 blur-3xl rounded-full"></div>
+
+                    <!-- Coloque aqui a imagem do vendedor ou iPhone -->
+                    <img src="img/post instagram carrossel consultoria de negócios moderno profissional verde azul e branco(1).png" alt="V&L Imports" class="relative z-10 w-full h-auto object-contain">
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Cards de Benefícios -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+
+            <div class="glass-card rounded-2xl p-6 text-center hover:scale-105 transition-transform duration-300">
+                <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-[#7ED321] to-[#6BC118] flex items-center justify-center shadow-lg">
+                    <span class="text-3xl">✓</span>
+                </div>
+                <h4 class="text-lg font-semibold text-white mb-2">Garantia Oficial</h4>
+                <p class="text-gray-400 text-sm">Todos os produtos com garantia de fábrica</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 text-center hover:scale-105 transition-transform duration-300">
+                <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-[#7ED321] to-[#6BC118] flex items-center justify-center shadow-lg">
+                    <span class="text-3xl">🔒</span>
+                </div>
+                <h4 class="text-lg font-semibold text-white mb-2">100% Original</h4>
+                <p class="text-gray-400 text-sm">Produtos originais Apple certificados</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 text-center hover:scale-105 transition-transform duration-300">
+                <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-[#7ED321] to-[#6BC118] flex items-center justify-center shadow-lg">
+                    <span class="text-3xl">💳</span>
+                </div>
+                <h4 class="text-lg font-semibold text-white mb-2">Parcelamento</h4>
+                <p class="text-gray-400 text-sm">Até 12x sem juros no cartão</p>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 text-center hover:scale-105 transition-transform duration-300">
+                <div class="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-[#7ED321] to-[#6BC118] flex items-center justify-center shadow-lg">
+                    <span class="text-3xl">📱</span>
+                </div>
+                <h4 class="text-lg font-semibold text-white mb-2">Suporte Total</h4>
+                <p class="text-gray-400 text-sm">Atendimento antes e depois da compra</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Nova Seção com Background Image -->
+<section class="relative py-20 px-6 overflow-hidden">
+    <!-- Imagem de fundo -->
+    <div class="absolute inset-0 z-0">
+        <img src="img/image.png" alt="iPhone Background" class="w-full h-full object-cover">
+    </div>
+
+    <!-- Overlay verde escuro para manter a identidade visual -->
+    <div class="absolute inset-0 bg-gradient-to-br from-[#0a3d0a]/80 via-[#022c22]/80 to-black/90 z-0"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+        <div>
+            <!-- Conteúdo centralizado -->
+            <div class="relative z-10 p-12 md:p-16 lg:p-20 text-center">
+                <h3 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+                    V&L IMPORTS
+                </h3>
+                <p class="text-gray-200 text-lg md:text-xl mb-6 leading-relaxed max-w-3xl mx-auto">
+                    Aqui você encontra uma seleção completa de iPhones novos de alta qualidade, todos com garantia. Nossa equipe está pronta para ajudá-lo a escolher o modelo ideal de acordo com suas necessidades e formas de pagamento. Além dos aparelhos, oferecemos também acessórios originais e Premium para potencializar a sua experiência com o iPhone.
+                </p>
+                <p class="text-[#7ED321] font-semibold text-xl md:text-2xl mb-8">
+                    Transforme seu sonho em realidade hoje mesmo!
+                </p>
+                <a href="https://wa.me/5561985330258" target="_blank" class="inline-block bg-gradient-to-r from-[#7ED321] to-[#6BC118] text-black px-8 py-4 rounded-xl hover:from-[#6BC118] hover:to-[#5AA915] transition-all duration-300 font-semibold shadow-lg text-lg">
+                    FALAR COM ESPECIALISTA →
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
 
 
     <!-- Products Section -->
@@ -156,13 +317,13 @@
 
             <!-- Product Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                
+
                 <!-- iPhone 15 Pro Max -->
                 <div class="glass-card rounded-2xl p-6 product-card">
                     <div class="relative mb-4">
                         <span class="absolute top-2 right-2 bg-[#7ED321] text-black text-xs px-3 py-1 rounded-full badge font-semibold z-10">Novo</span>
                         <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl p-6 mb-4 product-image">
-                            <img src="iphone rosa.jpg" alt="iPhone 15 Pro Max" class="w-full h-48 object-contain">
+                            <img src="images/iphone-15-pro-max.png" alt="iPhone 15 Pro Max" class="w-full h-48 object-contain">
                         </div>
                     </div>
                     <h3 class="text-lg font-semibold text-white mb-2">iPhone 15 Pro Max</h3>
@@ -187,7 +348,7 @@
                     <div class="relative mb-4">
                         <span class="absolute top-2 right-2 bg-[#7ED321] text-black text-xs px-3 py-1 rounded-full badge font-semibold z-10">Novo</span>
                         <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl p-6 mb-4 product-image">
-                            <img src="iphone azul.jpg" alt="iPhone 15 Pro" class="w-full h-48 object-contain">
+                            <img src="img/iphone 145.jpg" alt="iPhone 15 Pro" class="w-full h-48 object-contain">
                         </div>
                     </div>
                     <h3 class="text-lg font-semibold text-white mb-2">iPhone 15 Pro</h3>
@@ -212,7 +373,7 @@
                     <div class="relative mb-4">
                         <span class="absolute top-2 right-2 bg-blue-500 text-white text-xs px-3 py-1 rounded-full badge font-semibold z-10">Destaque</span>
                         <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl p-6 mb-4 product-image">
-                            <img src="Iphone rosa.jpg" alt="iPhone 15" class="w-full h-48 object-contain">
+                            <img src="images/iphone-15.png" alt="iPhone 15" class="w-full h-48 object-contain">
                         </div>
                     </div>
                     <h3 class="text-lg font-semibold text-white mb-2">iPhone 15</h3>
@@ -237,7 +398,7 @@
                     <div class="relative mb-4">
                         <span class="absolute top-2 right-2 bg-yellow-500 text-black text-xs px-3 py-1 rounded-full badge font-semibold z-10">Oferta</span>
                         <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl p-6 mb-4 product-image">
-                            <img src="iphone azul.jpg" alt="iPhone 14 Pro" class="w-full h-48 object-contain">
+                            <img src="images/iphone-14-pro.png" alt="iPhone 14 Pro" class="w-full h-48 object-contain">
                         </div>
                     </div>
                     <h3 class="text-lg font-semibold text-white mb-2">iPhone 14 Pro</h3>
@@ -261,7 +422,7 @@
                 <div class="glass-card rounded-2xl p-6 product-card">
                     <div class="relative mb-4">
                         <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl p-6 mb-4 product-image">
-                            <img src="Iphone rosa.jpg" alt="iPhone 14" class="w-full h-48 object-contain">
+                            <img src="images/iphone-14.png" alt="iPhone 14" class="w-full h-48 object-contain">
                         </div>
                     </div>
                     <h3 class="text-lg font-semibold text-white mb-2">iPhone 14</h3>
@@ -286,7 +447,7 @@
                     <div class="relative mb-4">
                         <span class="absolute top-2 right-2 bg-red-500 text-white text-xs px-3 py-1 rounded-full badge font-semibold z-10">Seminovo</span>
                         <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl p-6 mb-4 product-image">
-                            <img src="iphone azul.jpg" alt="iPhone 13 Pro" class="w-full h-48 object-contain">
+                            <img src="images/iphone-13-pro.png" alt="iPhone 13 Pro" class="w-full h-48 object-contain">
                         </div>
                     </div>
                     <h3 class="text-lg font-semibold text-white mb-2">iPhone 13 Pro</h3>
@@ -311,7 +472,7 @@
                     <div class="relative mb-4">
                         <span class="absolute top-2 right-2 bg-red-500 text-white text-xs px-3 py-1 rounded-full badge font-semibold z-10">Seminovo</span>
                         <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl p-6 mb-4 product-image">
-                            <img src="Iphone rosa.jpg" alt="iPhone 13" class="w-full h-48 object-contain">
+                            <img src="images/iphone-13.png" alt="iPhone 13" class="w-full h-48 object-contain">
                         </div>
                     </div>
                     <h3 class="text-lg font-semibold text-white mb-2">iPhone 13</h3>
@@ -336,7 +497,7 @@
                     <div class="relative mb-4">
                         <span class="absolute top-2 right-2 bg-purple-500 text-white text-xs px-3 py-1 rounded-full badge font-semibold z-10">Promoção</span>
                         <div class="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl p-6 mb-4 product-image">
-                            <img src="iphone azul.jpg" alt="iPhone 12" class="w-full h-48 object-contain">
+                            <img src="images/iphone-12.png" alt="iPhone 12" class="w-full h-48 object-contain">
                         </div>
                     </div>
                     <h3 class="text-lg font-semibold text-white mb-2">iPhone 12</h3>
@@ -386,7 +547,7 @@
             <div class="text-center">
                 <div class="flex items-center justify-center gap-3 mb-4">
                     <div class="w-10 h-10 rounded-xl overflow-hidden shadow-lg">
-                        <img src="logo.jpg" alt="V&L iPhones" class="w-full h-full object-cover">
+                        <img src="Branco-e-Linhas-em-Carvao-Casamento-Logotipo.jpg" alt="V&L iPhones" class="w-full h-full object-cover">
                     </div>
                     <span class="text-xl font-light text-white">V&L <span class="font-semibold text-[#7ED321]">iPhones</span></span>
                 </div>
@@ -413,6 +574,7 @@
             });
         });
 
+
         // Função de compra
         function comprarProduto(produto, preco) {
             const numeroLoja = '5561985330258';
@@ -421,7 +583,6 @@
             const urlWhatsApp = `https://wa.me/${numeroLoja}?text=${mensagemEncoded}`;
             window.open(urlWhatsApp, '_blank');
         }
-
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -434,5 +595,4 @@
         });
     </script>
 </body>
-
 </html>
