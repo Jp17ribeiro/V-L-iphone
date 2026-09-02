@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Avalie seu iPhone | V&amp;L Imports</title>
+  <meta name="description" content="Organize uma pré-avaliação do seu iPhone usado para negociar com a V&L Imports.">
+  <link rel="canonical" href="https://jp17ribeiro.github.io/V-L-iphone/orcamento.html">
+  <meta property="og:title" content="Avalie seu iPhone | V&L Imports"><meta property="og:description" content="Solicite uma avaliação do seu iPhone usado."><meta property="og:type" content="website"><meta property="og:image" content="https://jp17ribeiro.github.io/V-L-iphone/assets/img/logo.jpg"><meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/img/logo.jpg"><link rel="stylesheet" href="assets/css/styles.css">
+  <script defer src="assets/js/config.js"></script><script defer src="assets/js/catalog.js"></script><script defer src="assets/js/shared.js"></script><script defer src="assets/js/orcamento.js"></script>
+</head>
+<body class="quote-page">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <header class="site-header is-scrolled"><nav class="nav container" aria-label="Navegação principal">
+    <a class="brand brand-text" href="index.html" aria-label="V&amp;L Imports"><strong>V<span>&amp;</span>L</strong> Imports</a>
+    <button class="menu-button" type="button" data-menu-button aria-label="Abrir menu" aria-expanded="false">☰</button>
+    <div class="nav-links" data-menu><a href="index.html">Início</a><a href="index.html#produtos">Produtos</a><a href="orcamento.html" aria-current="page">Avalie seu iPhone</a><a href="index.html#como-funciona">Como funciona</a><a href="index.html#contato">Contato</a></div>
+    <a class="button primary whatsapp-button" href="index.html#contato" data-whatsapp><span aria-hidden="true">◉</span> Falar no WhatsApp</a>
+  </nav></header>
+  <main class="quote-main" id="conteudo"><div class="container">
+    <span class="eyebrow">Pré-avaliação</span><h1>Avalie seu iPhone</h1><p class="quote-intro">Preencha as etapas. A estimativa, quando configurada, permanece sujeita à avaliação presencial.</p>
+    <div class="stepper" aria-label="Progresso da avaliação">
+      <button class="step-dot active" type="button" data-goto="0"><span>1</span><b>Desejado</b></button>
+      <button class="step-dot" type="button" data-goto="1"><span>2</span><b>Troca</b></button>
+      <button class="step-dot" type="button" data-goto="2"><span>3</span><b>Estado</b></button>
+      <button class="step-dot" type="button" data-goto="3"><span>4</span><b>Resultado</b></button>
+    </div>
+    <div class="quote-shell"><form class="quote-panel" id="quote-form" novalidate>
+      <section class="quote-step" data-step="0"><h2>iPhone desejado</h2><div class="form-grid"><div class="field full"><label for="desired">Aparelho do catálogo</label><select id="desired" name="desired" required><option value="">Selecione</option></select><small class="error" id="desired-error"></small></div><div class="desired-preview full" data-product-preview hidden></div></div></section>
+      <section class="quote-step" data-step="1" hidden><h2>Aparelho para troca</h2><div class="form-grid">
+        <div class="field full"><label class="choice"><input type="checkbox" name="hasTrade"> Tenho um iPhone para dar como entrada</label></div>
+        <div class="field"><label for="tradeModel">Modelo</label><input id="tradeModel" name="tradeModel" maxlength="40" placeholder="Ex.: iPhone 12"></div><div class="field"><label for="tradeStorage">Armazenamento</label><input id="tradeStorage" name="tradeStorage" maxlength="12" placeholder="Ex.: 128 GB"></div><div class="field"><label for="tradeColor">Cor</label><input id="tradeColor" name="tradeColor" maxlength="30"></div><div class="field"><label for="battery">Saúde da bateria (%)</label><input id="battery" name="battery" type="number" min="0" max="100" inputmode="numeric"></div>
+        <div class="field full"><label for="tradeBase">Valor-base de troca confirmado pela loja (R$)</label><input id="tradeBase" name="tradeBase" type="number" min="0" step="1" inputmode="decimal" placeholder="Deixe vazio se ainda não houver avaliação"><small>O catálogo original não possui tabela de trade-in.</small></div>
+        <div class="choice-grid full"><label class="choice"><input type="checkbox" name="faceId" checked> Face ID funciona</label><label class="choice"><input type="checkbox" name="cameras" checked> Câmeras funcionam</label><label class="choice"><input type="checkbox" name="screen" checked> Tela funciona</label><label class="choice"><input type="checkbox" name="trueTone" checked> True Tone funciona</label><label class="choice"><input type="checkbox" name="buttons" checked> Botões/conectores funcionam</label><label class="choice"><input type="checkbox" name="regularImei" checked> IMEI regular</label><label class="choice"><input type="checkbox" name="unlockedIcloud" checked> iCloud desbloqueado</label><label class="choice"><input type="checkbox" name="cracks"> Trincas ou riscos fortes</label><label class="choice"><input type="checkbox" name="liquid"> Dano por líquido</label><label class="choice"><input type="checkbox" name="replaced"> Peças substituídas</label><label class="choice"><input type="checkbox" name="nonOriginal"> Peças paralelas</label></div>
+      </div></section>
+      <section class="quote-step" data-step="2" hidden><h2>Condição geral</h2><div class="choice-grid"><label class="choice"><input type="radio" name="condition" value="excelente" required><span><strong>Excelente</strong><br>Sem marcas relevantes e tudo funcionando.</span></label><label class="choice"><input type="radio" name="condition" value="bom"><span><strong>Bom</strong><br>Pequenos sinais de uso.</span></label><label class="choice"><input type="radio" name="condition" value="usado"><span><strong>Usado</strong><br>Marcas visíveis, mas utilizável.</span></label><label class="choice"><input type="radio" name="condition" value="danificado"><span><strong>Danificado</strong><br>Precisa de reparo ou tem falhas.</span></label></div><small class="error" id="condition-error"></small></section>
+      <section class="quote-step" data-step="3" hidden><h2>Resultado e contato</h2><div class="form-grid"><div class="field"><label for="clientName">Nome (opcional)</label><input id="clientName" name="clientName" maxlength="60" autocomplete="name"></div><div class="field"><label for="phone">Telefone (opcional)</label><input id="phone" name="phone" maxlength="16" inputmode="tel" autocomplete="tel"></div><div class="field full"><label for="notes">Observações (opcional)</label><textarea id="notes" name="notes" maxlength="300" rows="3"></textarea></div><button class="button primary full" type="submit">Salvar resumo</button><button class="button secondary" type="button" data-pdf>Gerar PDF</button><button class="button secondary" type="button" data-send>Enviar pelo WhatsApp</button></div></section>
+      <div class="quote-nav"><a class="button secondary home-back" href="index.html" data-home-back>Voltar para a Home</a><button class="button secondary" type="button" data-prev>Voltar</button><button class="button primary" type="button" data-next>Continuar</button></div>
+    </form>
+    <aside class="summary-panel" aria-live="polite"><h2>Resumo</h2><dl><div class="summary-desired"><dt>Desejado</dt><dd data-summary="desired">Não selecionado</dd></div><div><dt>Preço</dt><dd data-summary="price">—</dd></div><div><dt>Usado</dt><dd data-summary="trade">Sem troca</dd></div><div><dt>Estimativa</dt><dd class="estimate-value" data-summary="estimate">Aguardando avaliação</dd></div><div><dt>Descontos</dt><dd data-summary="discount">—</dd></div><div class="summary-total"><dt>Diferença a pagar</dt><dd class="result-total" data-summary="difference">—</dd></div></dl><p class="notice"><span aria-hidden="true">ⓘ</span> Estimativa sujeita à avaliação presencial. Se a troca superar o valor desejado, a condição será analisada pela loja.</p></aside>
+    </div>
+    <section class="history-section"><div class="section-head"><div><span class="eyebrow">Neste dispositivo</span><h2>Histórico de orçamentos</h2></div><button class="button secondary" type="button" data-clear>Limpar histórico</button></div><div class="history-list" data-history></div></section>
+  </div></main>
+  <div class="modal" data-modal hidden role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-box"><h2 id="modal-title">Limpar histórico?</h2><p>Os resumos salvos neste dispositivo serão removidos.</p><div class="modal-actions"><button class="button secondary" type="button" data-cancel>Cancelar</button><button class="button primary" type="button" data-confirm>Confirmar</button></div></div></div>
+  <footer class="site-footer"><div class="container footer-bottom">© <span data-year></span> V&amp;L Imports.</div></footer><div class="toast" data-toast hidden role="status" aria-live="polite"></div>
+</body></html>
